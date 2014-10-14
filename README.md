@@ -15,6 +15,6 @@ A Minimalist Text Adventure Game
 ]
   
 ---- My version so far ----
-[Play on GitHub](http://ChapmanCPSC370.github.io/adarkroom)
+[Play on GitHub](http://homeofmatt.github.io/adarkroom)
 
 
