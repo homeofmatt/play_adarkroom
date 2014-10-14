@@ -3,6 +3,7 @@ A Dark Room
 
 A Minimalist Text Adventure Game
 
+---- For original game ----
 [Click to play](http://adarkroom.doublespeakgames.com/)  
 [ 
   [Chinese](http://adarkroom.doublespeakgames.com/?lang=cn) |
@@ -13,7 +14,7 @@ A Minimalist Text Adventure Game
   [Polish](http://adarkroom.doublespeakgames.com/?lang=pl) 
 ]
   
-
-[Play on GitHub](http://continuities.github.io/adarkroom)
+---- My version so far ----
+[Play on GitHub](http://ChapmanCPSC370.github.io/adarkroom)
 
 
