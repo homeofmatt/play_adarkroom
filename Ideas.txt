@@ -1,0 +1,23 @@
+processing.js
+--------------
+
+Dog/Companion
+Store
+Transportation
+
+Make spaceship inaccessible until player has traveled to 5 other towns, completed their challenges and/or
+destroyed them, and learns new tech from each city. Allow collection of alien alloy regardless.
+Technologies should be:
+	1. Temple (visiting spiritual ground (new area) will bestow temporary blessing. No food or water
+	   consumed for 10 steps)
+	2. Barracks (build to assign villagers to soldier duty. Armed with no armor and no weapons initially,
+	   separate buttons from player armor and weapons to arm whole army, army power = (armor val * # soldiers) + (weap val * # soldiers)
+	3. Hospital (no more plague or disease, medicine 75% cheaper)
+	4. 
+- Destroying city will give +population and +resources
+- Completing challenge will give trade flow, making resources & buildings 50% cheaper (than current value) to make
+- Destroying 3 cities gives Conquistador ability: Up to 2 soldiers will accompany you everywhere, and fight for you. 
+   Armor is constant but weapons must be replenished if you die. They will eat cured meat at same rate as player, 
+   but will have basic level carry capacity.
+- Completing challenges in 3 cities gives Diplomat ability: Humanoid enemies can be persuaded to give you their items,
+   House inhabitants will be benevolent, 
