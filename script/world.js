@@ -20,7 +20,8 @@ var World = {
 		BOREHOLE: 'B',
 		BATTLEFIELD: 'F',
 		SWAMP: 'M',
-		CACHE: 'U'
+		CACHE: 'U',
+		CIVILIZATION: 'K'
 	},
 	TILE_PROBS: {},
 	LANDMARKS: {},
@@ -128,6 +129,7 @@ var World = {
 		World.LANDMARKS[World.TILE.BOREHOLE] = { num: 10, minRadius: 15, maxRadius: World.RADIUS * 1.5, scene: 'borehole', label:  _('A&nbsp;Borehole')};
 		World.LANDMARKS[World.TILE.BATTLEFIELD] = { num: 5, minRadius: 18, maxRadius: World.RADIUS * 1.5, scene: 'battlefield', label:  _('A&nbsp;Battlefield')};
 		World.LANDMARKS[World.TILE.SWAMP] = { num: 1, minRadius: 15, maxRadius: World.RADIUS * 1.5, scene: 'swamp', label:  _('A&nbsp;Murky&nbsp;Swamp')};
+		World.LANDMARKS[World.TILE.CIVILIZATION] = { num: 5, minRadius: 25, maxRadius: 30, scene: ''} //finish this
 		
 		// Only add the cache if there is prestige data
 		if($SM.get('previous.stores')) {
