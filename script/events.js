@@ -637,6 +637,7 @@ var Events = {
 					id: id,
 					text: info.text,
 					cost: info.cost,
+					perk: info.perk,
 					click: Events.buttonClick,
 					cooldown: info.cooldown
 				}).appendTo(btns);
@@ -665,6 +666,18 @@ var Events = {
 					if(typeof num != 'number') num = 0;
 					if(num < b.cost[store]) {
 						// Too expensive
+						disabled = true;
+						break;
+					}
+				}
+				Button.setDisabled(btnEl, disabled);
+			} else if(b.perk) {
+				var disabled = false;
+				for(var p_name in b.perk) {
+					var has_perk = $SM.hasPerk(p_name);
+					if(typeof has_perk != 'boolean') has_perk = false;
+					if(has_perk != true){
+						//does not have perk
 						disabled = true;
 						break;
 					}

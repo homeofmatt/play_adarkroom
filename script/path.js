@@ -101,7 +101,9 @@ var Path = {
 				needsAppend = true;
 				perks = $('<div>').attr('id', 'perks');
 			}
-			for(var k in $SM.get('character.perks')) {
+			var perksArr = $SM.get('character.perks');
+			for(var k in perksArr) {
+				var p_name = perksArr[k];
 				var id = 'perk_' + k.replace(' ', '-');
 				var r = $('#' + id);
 				if($SM.get('character.perks["'+k+'"]') && r.length == 0) {

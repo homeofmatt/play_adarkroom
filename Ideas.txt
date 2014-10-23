@@ -8,7 +8,7 @@ Transportation
 Make spaceship inaccessible until player has traveled to 5 other towns, completed their challenges and/or
 destroyed them, and learns new tech from each city. Allow collection of alien alloy regardless.
 Technologies should be:
-	1. Temple (visiting spiritual ground (new area) will bestow temporary blessing. No food or water
+	1. Temple (gives 'spiritual' perk; allows spiritual ground (new area) to bestow temporary blessing. No food or water
 		consumed for 10 steps)
 	2. Barracks (build to assign villagers to soldier duty. Armed with no armor and no weapons initially,
 	   	separate buttons from player armor and weapons to arm whole army

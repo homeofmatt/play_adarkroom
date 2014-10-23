@@ -71,12 +71,17 @@
 				name: _('gastronome'),
 				desc: _('restore more health when eating'),
 				notify: _('learned to make the most of food')
+			},
+			'spiritual': {
+				name: _('spiritual'),
+				desc: _('shrines bestow temporary blessing'),
+				notify: _('learned of a higher calling')
 			}
 		},
 		
 		options: {
 			state: null,
-			debug: true,
+			debug: false,
 			log: false,
 			dropbox: false
 		},

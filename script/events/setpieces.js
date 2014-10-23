@@ -1,6 +1,7 @@
 /**
  * Events that only occur at specific times. Launched manually.
  **/
+ //include civilizations unresolved and resolved, also shrines w/o temple & w/ temple & useShrine
 Events.Setpieces = {
 	"outpost": { /* Friendly Outpost */
 		title: _('An Outpost'),
@@ -24,6 +25,63 @@ Events.Setpieces = {
 					'leave': {
 						text: _('leave'),
 						cooldown: Events._LEAVE_COOLDOWN,
+						nextScene: 'end'
+					}
+				}
+			}
+		}
+	},
+	"shrine": {
+		title: _('An Ancient Shrine'),
+		scenes: {
+			'start': {
+				text: [
+					_('monuments to a long forgotten deity tower above'),
+					_('a strange feeling of safety sets in,'),
+					_('almost forgetting the savage world outside')
+				],
+				notification: _('monuments to a long forgotten deity tower tower above.'),
+				buttons: {
+					'enter': {
+						text: _('explore'),
+						nextScene: {1: 'altar'}
+					},
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			},
+			'altar': {
+				text: [
+					_('encountered a strange altar, wrought from stone.'),
+					_('bones, remnants of past sacrifices, are scattered everywhere.'),
+					_('instructions are carved into the altar.')
+				],
+				buttons: {
+					'talk': {
+						perk: ('spiritual'),
+						text: _('worship'),
+						nextScene: {1: 'worship'}
+					},
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			},
+			'worship': {
+				text: [
+					_("can't resist cutting hand and shedding blood onto the altar"),
+					_('something, somewhere approves.')
+				],
+				onLoad: function(){
+					World.useShrine();
+					World.Blessed += 10;
+				},
+				buttons: {
+					'leave': {
+						text: _('receive blessing'),
 						nextScene: 'end'
 					}
 				}

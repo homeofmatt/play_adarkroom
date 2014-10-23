@@ -16,12 +16,17 @@ var World = {
 		TOWN: 'O',
 		CITY: 'Y',
 		OUTPOST: 'P',
-		SHIP: 'W',
+		SHIP: 'X',
 		BOREHOLE: 'B',
 		BATTLEFIELD: 'F',
 		SWAMP: 'M',
 		CACHE: 'U',
-		CIVILIZATION: '$'
+		TEMPLE_CIV: '1',
+		BARRACKS_CIV: '2',
+		HOSPITAL_CIV: '3',
+		UNIVERSITY_CIV: '4',
+		THEATRE_CIV: '5',
+		SHRINE: 'W'
 	},
 	TILE_PROBS: {},
 	LANDMARKS: {},
@@ -32,7 +37,7 @@ var World = {
 	MOVES_PER_WATER: 1,
 	DEATH_COOLDOWN: 120,
 	FIGHT_CHANCE: 0.20,
-	BASE_HEALTH: 10,
+	BASE_HEALTH: 999, //DEBUGGING og val: 10
 	BASE_HIT_CHANCE: 0.8,
 	MEAT_HEAL: 8,
 	MEDS_HEAL: 20,
@@ -41,6 +46,8 @@ var World = {
 	SOUTH: [ 0,  1],
 	WEST:  [-1,  0],
 	EAST:  [ 1,  0],
+
+	Blessed: 0, //move count for blessings
 	
 	Weapons: {
 		'fists': {
@@ -129,7 +136,12 @@ var World = {
 		World.LANDMARKS[World.TILE.BOREHOLE] = { num: 10, minRadius: 15, maxRadius: World.RADIUS * 1.5, scene: 'borehole', label:  _('A&nbsp;Borehole')};
 		World.LANDMARKS[World.TILE.BATTLEFIELD] = { num: 5, minRadius: 18, maxRadius: World.RADIUS * 1.5, scene: 'battlefield', label:  _('A&nbsp;Battlefield')};
 		World.LANDMARKS[World.TILE.SWAMP] = { num: 1, minRadius: 15, maxRadius: World.RADIUS * 1.5, scene: 'swamp', label:  _('A&nbsp;Murky&nbsp;Swamp')};
-		World.LANDMARKS[World.TILE.CIVILIZATION] = { num: 5, minRadius: 25, maxRadius: 30, scene: 'civilization', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.TEMPLE_CIV] = { num: 1, minRadius: 15, maxRadius: 20, scene: 'temple_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.BARRACKS_CIV] = { num: 1, minRadius: 15, maxRadius: 25, scene: 'barracks_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.HOSPITAL_CIV] = { num: 1, minRadius: 20, maxRadius: 25, scene: 'hospital_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.UNIVERSITY_CIV] = { num: 1, minRadius: 20, maxRadius: 30, scene: 'university_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.THEATRE_CIV] = { num: 1, minRadius: 25, maxRadius: 30, scene: 'theatre_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.SHRINE] = { num: 3, minRadius: 10, maxRadius: 30, scene: 'shrine', label: _('An&nbsp;Ancient&nbsp;Shrine')};
 		
 		// Only add the cache if there is prestige data
 		if($SM.get('previous.stores')) {
@@ -434,68 +446,76 @@ var World = {
 	},
 	
 	useSupplies: function() {
-		World.foodMove++;
-		World.waterMove++;
-		// Food
-		var movesPerFood = World.MOVES_PER_FOOD;
-		movesPerFood *= $SM.hasPerk('slow metabolism') ? 2 : 1;
-		if(World.foodMove >= movesPerFood) {
-			World.foodMove = 0;
-			var num = Path.outfit['cured meat'];
-			num--;
-			if(num == 0) {
-				Notifications.notify(World, _('the meat has run out'));
-			} else if(num < 0) {
-				// Starvation! Hooray!
-				num = 0;
-				if(!World.starvation) {
-					Notifications.notify(World, _('starvation sets in'));
-					World.starvation = true;
-				} else {
-					$SM.set('character.starved', $SM.get('character.starved', true));
-					$SM.add('character.starved', 1);
-					if($SM.get('character.starved') >= 10 && !$SM.hasPerk('slow metabolism')) {
-						$SM.addPerk('slow metabolism');
-					}
-					World.die();
-					return false;
-				}
-			} else {
-				World.starvation = false;
-				World.setHp(World.health + World.meatHeal());
+		if(World.Blessed > 0){
+			if(World.Blessed == 1){
+				Notifications.notify(World, _('the blessing wears off'));
 			}
-			Path.outfit['cured meat'] = num;
+			World.Blessed--;
 		}
-		// Water
-		var movesPerWater = World.MOVES_PER_WATER;
-		movesPerWater *= $SM.hasPerk('desert rat') ? 2 : 1;
-		if(World.waterMove >= movesPerWater) {
-			World.waterMove = 0;
-			var water = World.water;
-			water--;
-			if(water == 0) {
-				Notifications.notify(World, _('there is no more water'));
-			} else if(water < 0) {
-				water = 0;
-				if(!World.thirst) {
-					Notifications.notify(World, _('the thirst becomes unbearable'));
-					World.thirst = true;
-				} else {
-					$SM.set('character.dehydrated', $SM.get('character.dehydrated', true));
-					$SM.add('character.dehydrated', 1);
-					if($SM.get('character.dehydrated') >= 10 && !$SM.hasPerk('desert rat')) {
-						$SM.addPerk('desert rat');
+		else{
+			World.foodMove++;
+			World.waterMove++;
+			// Food
+			var movesPerFood = World.MOVES_PER_FOOD;
+			movesPerFood *= $SM.hasPerk('slow metabolism') ? 2 : 1;
+			if(World.foodMove >= movesPerFood) {
+				World.foodMove = 0;
+				var num = Path.outfit['cured meat'];
+				num--;
+				if(num == 0) { //implement adrenaline here
+					Notifications.notify(World, _('the meat has run out'));
+				} else if(num < 0) {
+					// Starvation! Hooray!
+					num = 0;
+					if(!World.starvation) {
+						Notifications.notify(World, _('starvation sets in'));
+						World.starvation = true;
+					} else {
+						$SM.set('character.starved', $SM.get('character.starved', true));
+						$SM.add('character.starved', 1);
+						if($SM.get('character.starved') >= 10 && !$SM.hasPerk('slow metabolism')) {
+							$SM.addPerk('slow metabolism');
+						}
+						World.die();
+						return false;
 					}
-					World.die();
-					return false;
+				} else {
+					World.starvation = false;
+					World.setHp(World.health + World.meatHeal());
 				}
-			} else {
-				World.thirst = false;
+				Path.outfit['cured meat'] = num;
 			}
-			World.setWater(water);
-			World.updateSupplies();
+			// Water
+			var movesPerWater = World.MOVES_PER_WATER;
+			movesPerWater *= $SM.hasPerk('desert rat') ? 2 : 1;
+			if(World.waterMove >= movesPerWater) {
+				World.waterMove = 0;
+				var water = World.water;
+				water--;
+				if(water == 0) { //implement adrenaline here
+					Notifications.notify(World, _('there is no more water'));
+				} else if(water < 0) {
+					water = 0;
+					if(!World.thirst) {
+						Notifications.notify(World, _('the thirst becomes unbearable'));
+						World.thirst = true;
+					} else {
+						$SM.set('character.dehydrated', $SM.get('character.dehydrated', true));
+						$SM.add('character.dehydrated', 1);
+						if($SM.get('character.dehydrated') >= 10 && !$SM.hasPerk('desert rat')) {
+							$SM.addPerk('desert rat');
+						}
+						World.die();
+						return false;
+					}
+				} else {
+					World.thirst = false;
+				}
+				World.setWater(water);
+				World.updateSupplies();
+			}
+			return true;
 		}
-		return true;
 	},
 	
 	meatHeal: function() {
