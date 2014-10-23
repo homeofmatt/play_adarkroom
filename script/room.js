@@ -383,6 +383,14 @@ var Room = {
 				};
 			}
 		},
+		'adrenaline': {
+			type: 'good',
+			cost: function() {
+				return {
+					'medicine': 30
+				};
+			}
+		},
 		'bullets': {
 			type: 'good',
 			cost: function() {
