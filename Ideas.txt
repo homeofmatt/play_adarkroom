@@ -9,11 +9,14 @@ Make spaceship inaccessible until player has traveled to 5 other towns, complete
 destroyed them, and learns new tech from each city. Allow collection of alien alloy regardless.
 Technologies should be:
 	1. Temple (visiting spiritual ground (new area) will bestow temporary blessing. No food or water
-	   consumed for 10 steps)
+		consumed for 10 steps)
 	2. Barracks (build to assign villagers to soldier duty. Armed with no armor and no weapons initially,
-	   separate buttons from player armor and weapons to arm whole army, army power = (armor val * # soldiers) + (weap val * # soldiers)
-	3. Hospital (no more plague or disease, medicine 75% cheaper)
-	4. 
+	   	separate buttons from player armor and weapons to arm whole army
+		army power = (armor val * # soldiers) + (weap val * # soldiers)
+	3. Hospital (no more plague or disease, allows for creation of 'Adrenaline Shot' which revives player upon
+		death and allows invulnerability for 10 steps. Costs )
+	4. University (
+	5. Theatre (
 - Destroying city will give +population and +resources
 - Completing challenge will give trade flow, making resources & buildings 50% cheaper (than current value) to make
 - Destroying 3 cities gives Conquistador ability: Up to 2 soldiers will accompany you everywhere, and fight for you. 
