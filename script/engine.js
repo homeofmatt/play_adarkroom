@@ -191,13 +191,15 @@
 			Notifications.init();
 			Events.init();
 			Room.init();
+			//should be included below if compass is true
+			Path.init();
 			
 			if(typeof $SM.get('stores.wood') != 'undefined') {
 				Outside.init();
 			}
-			if($SM.get('stores.compass', true) > 0) {
+			/*if($SM.get('stores.compass', true) > 0) {
 				Path.init();
-			}
+			}*/
 			if($SM.get('features.location.spaceShip')) {
 				Ship.init();
 			}
