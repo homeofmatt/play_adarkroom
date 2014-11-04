@@ -76,6 +76,11 @@
 				name: _('spiritual'),
 				desc: _('shrines bestow temporary blessing'),
 				notify: _('learned of a higher calling')
+			},
+			'worldly': {
+				name: _('worldly'),
+				desc: _('wanderer ship can be salvaged'),
+				notify: _('learned how to get off this rock')
 			}
 		},
 		
@@ -191,15 +196,13 @@
 			Notifications.init();
 			Events.init();
 			Room.init();
-			//should be included below if compass is true
-			Path.init();
 			
 			if(typeof $SM.get('stores.wood') != 'undefined') {
 				Outside.init();
 			}
-			/*if($SM.get('stores.compass', true) > 0) {
+			if($SM.get('stores.compass', true) > 0) {
 				Path.init();
-			}*/
+			}
 			if($SM.get('features.location.spaceShip')) {
 				Ship.init();
 			}

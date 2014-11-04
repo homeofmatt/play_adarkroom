@@ -23,15 +23,15 @@ var World = {
 		CACHE: 'U',
 		TEMPLE_CIV: '1',
 		BARRACKS_CIV: '2',
-		HOSPITAL_CIV: '3',
-		UNIVERSITY_CIV: '4',
-		THEATRE_CIV: '5',
+		REFUGEE_CIV: '3',
+		SCIENCE_CIV: '4',
+		LAST_CIV: '5',
 		SHRINE: 'W'
 	},
 	TILE_PROBS: {},
 	LANDMARKS: {},
 	STICKINESS: 0.5, // 0 <= x <= 1
-	LIGHT_RADIUS: 2,
+	LIGHT_RADIUS: 60, //DEBUGGING og val: 2
 	BASE_WATER: 10,
 	MOVES_PER_FOOD: 2,
 	MOVES_PER_WATER: 1,
@@ -90,7 +90,7 @@ var World = {
 		'laser rifle': {
 			verb: _('blast'),
 			type: 'ranged',
-			damage: 8,
+			damage: 12,
 			cooldown: 1,
 			cost: { 'energy cell': 1 }
 		},
@@ -136,12 +136,12 @@ var World = {
 		World.LANDMARKS[World.TILE.BOREHOLE] = { num: 10, minRadius: 15, maxRadius: World.RADIUS * 1.5, scene: 'borehole', label:  _('A&nbsp;Borehole')};
 		World.LANDMARKS[World.TILE.BATTLEFIELD] = { num: 5, minRadius: 18, maxRadius: World.RADIUS * 1.5, scene: 'battlefield', label:  _('A&nbsp;Battlefield')};
 		World.LANDMARKS[World.TILE.SWAMP] = { num: 1, minRadius: 15, maxRadius: World.RADIUS * 1.5, scene: 'swamp', label:  _('A&nbsp;Murky&nbsp;Swamp')};
-		World.LANDMARKS[World.TILE.TEMPLE_CIV] = { num: 1, minRadius: 15, maxRadius: 20, scene: 'temple_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
-		World.LANDMARKS[World.TILE.BARRACKS_CIV] = { num: 1, minRadius: 15, maxRadius: 25, scene: 'barracks_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
-		World.LANDMARKS[World.TILE.HOSPITAL_CIV] = { num: 1, minRadius: 20, maxRadius: 25, scene: 'hospital_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
-		World.LANDMARKS[World.TILE.UNIVERSITY_CIV] = { num: 1, minRadius: 20, maxRadius: 30, scene: 'university_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
-		World.LANDMARKS[World.TILE.THEATRE_CIV] = { num: 1, minRadius: 25, maxRadius: 30, scene: 'theatre_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
-		World.LANDMARKS[World.TILE.SHRINE] = { num: 3, minRadius: 10, maxRadius: 30, scene: 'shrine', label: _('An&nbsp;Ancient&nbsp;Shrine')};
+		World.LANDMARKS[World.TILE.TEMPLE_CIV] = { num: 1, minRadius: 18, maxRadius: 21, scene: 'temple_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.BARRACKS_CIV] = { num: 1, minRadius: 21, maxRadius: 24, scene: 'barracks_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.REFUGEE_CIV] = { num: 1, minRadius: 24, maxRadius: 27, scene: 'refugee_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.SCIENCE_CIV] = { num: 1, minRadius: 27, maxRadius: 30, scene: 'science_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.LAST_CIV] = { num: 1, minRadius: 30, maxRadius: World.RADIUS * 1.5, scene: 'last_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.SHRINE] = { num: 5, minRadius: 10, maxRadius: World.RADIUS * 1.5, scene: 'shrine', label: _('An&nbsp;Ancient&nbsp;Shrine')};
 		
 		// Only add the cache if there is prestige data
 		if($SM.get('previous.stores')) {
@@ -546,8 +546,10 @@ var World = {
 			World.goHome();
 		} else if(typeof World.LANDMARKS[curTile] != 'undefined') {
 			//if current tile isn't an outpost/shrine, go. If it is, go if they aren't used
-			if(curTile != World.TILE.OUTPOST || curTile != World.TILE.SHRINE || !World.outpostUsed() || !World.shrineUsed()) {
-				Events.startEvent(Events.Setpieces[World.LANDMARKS[curTile].scene]);
+			if(curTile != World.TILE.OUTPOST || !World.outpostUsed()) {
+				if(curTile != World.TILE.SHRINE || !World.shrineUsed()){
+					Events.startEvent(Events.Setpieces[World.LANDMARKS[curTile].scene]);
+				}
 			}
 		} else {
 			if(World.useSupplies()) {
@@ -805,7 +807,7 @@ var World = {
 							mapString += '<span class="landmark">' + c + '<div class="tooltip' + ttClass + '">'+_('The&nbsp;Village')+'</div></span>';
 							break;
 						default:
-							if(typeof World.LANDMARKS[c] != 'undefined' && (c != World.TILE.OUTPOST || c != world.TILE.SHRINE || !World.outpostUsed(i, j) || !World.shrineUsed(i, j))) {
+							if(typeof World.LANDMARKS[c] != 'undefined' && (c != World.TILE.OUTPOST || !World.outpostUsed(i, j)) && (c != World.TILE.SHRINE || !World.shrineUsed(i, j))) {
 								mapString += '<span class="landmark">' + c + '<div class="tooltip' + ttClass + '">' + World.LANDMARKS[c].label + '</div></span>';
 							} else {
 								if(c.length > 1) {
@@ -936,7 +938,7 @@ var World = {
 		y = typeof y == 'number' ? y : World.curPos[1];
 		var used = World.usedShrines[x + ',' + y];
 		return typeof used != 'undefined' && used == true;
-	}
+	},
 	
 	useOutpost: function() {
 		Notifications.notify(null, _('water replenished'));
@@ -947,10 +949,10 @@ var World = {
 
 	useShrine: function() {
 		Notifications.notify(null, _('blessed'));
-		World.Blessed += 10;
+		World.Blessed += 20;
 		//Mark shrine as used
 		World.usedShrines[World.curPos[0] + ',' + World.curPos[1]] = true;
-	}
+	},
 	
 	onArrival: function() {
 		Engine.keyLock = false;

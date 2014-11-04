@@ -11,7 +11,11 @@ var Path = {
 		'bullets': 0.1,
 		'energy cell': 0.2,
 		'laser rifle': 5,
-		'bolas': 0.5
+		'bolas': 0.5,
+		'shamanic offerings': 5,
+		'weapons cache': 5,
+		'care package': 5,
+		'lab supplies': 5
 	},
 		
 	name: 'Path',
