@@ -545,7 +545,8 @@ var World = {
 		if(curTile == World.TILE.VILLAGE) {
 			World.goHome();
 		} else if(typeof World.LANDMARKS[curTile] != 'undefined') {
-			if(curTile != World.TILE.OUTPOST || !World.outpostUsed()) {
+			//if current tile isn't an outpost/shrine, go. If it is, go if they aren't used
+			if(curTile != World.TILE.OUTPOST || curTile != World.TILE.SHRINE || !World.outpostUsed() || !World.shrineUsed()) {
 				Events.startEvent(Events.Setpieces[World.LANDMARKS[curTile].scene]);
 			}
 		} else {
@@ -804,7 +805,7 @@ var World = {
 							mapString += '<span class="landmark">' + c + '<div class="tooltip' + ttClass + '">'+_('The&nbsp;Village')+'</div></span>';
 							break;
 						default:
-							if(typeof World.LANDMARKS[c] != 'undefined' && (c != World.TILE.OUTPOST || !World.outpostUsed(i, j))) {
+							if(typeof World.LANDMARKS[c] != 'undefined' && (c != World.TILE.OUTPOST || c != world.TILE.SHRINE || !World.outpostUsed(i, j) || !World.shrineUsed(i, j))) {
 								mapString += '<span class="landmark">' + c + '<div class="tooltip' + ttClass + '">' + World.LANDMARKS[c].label + '</div></span>';
 							} else {
 								if(c.length > 1) {
@@ -929,6 +930,13 @@ var World = {
 		var used = World.usedOutposts[x + ',' + y];
 		return typeof used != 'undefined' && used == true;
 	},
+
+	shrineUsed: function(x, y) {
+		x = typeof x == 'number' ? x : World.curPos[0];
+		y = typeof y == 'number' ? y : World.curPos[1];
+		var used = World.usedShrines[x + ',' + y];
+		return typeof used != 'undefined' && used == true;
+	}
 	
 	useOutpost: function() {
 		Notifications.notify(null, _('water replenished'));
@@ -936,6 +944,13 @@ var World = {
 		// Mark this outpost as used
 		World.usedOutposts[World.curPos[0] + ',' + World.curPos[1]] = true;
 	},
+
+	useShrine: function() {
+		Notifications.notify(null, _('blessed'));
+		World.Blessed += 10;
+		//Mark shrine as used
+		World.usedShrines[World.curPos[0] + ',' + World.curPos[1]] = true;
+	}
 	
 	onArrival: function() {
 		Engine.keyLock = false;
@@ -948,6 +963,7 @@ var World = {
 		World.starvation = false;
 		World.thirst = false;
 		World.usedOutposts = {};
+		World.usedShrines = {};
 		World.curPos = World.copyPos(World.VILLAGE_POS);
 		World.drawMap();
 		World.setTitle();

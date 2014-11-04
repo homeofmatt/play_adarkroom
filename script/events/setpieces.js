@@ -77,7 +77,6 @@ Events.Setpieces = {
 				],
 				onLoad: function(){
 					World.useShrine();
-					World.Blessed += 10;
 				},
 				buttons: {
 					'leave': {
