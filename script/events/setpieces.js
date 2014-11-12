@@ -4,8 +4,8 @@
  //include civilizations unresolved and resolved, also shrines w/o temple & w/ temple & useShrine
 Events.Setpieces = {
 	/* Civilizations */
-	/*"temple_civ": {
-		title: _('A Grand Civilization'),
+	"temple_civ": {
+		title: _('A Grand Temple'),
 		scenes: {
 			'start': {
 				text: [
@@ -17,7 +17,7 @@ Events.Setpieces = {
 				buttons: {
 					'enter': {
 						text: _('investigate'),
-						nextScene: {1: 'pyramid'}
+						nextScene: {1: 'investigate'}
 					},
 					'leave': {
 						text: _('leave'),
@@ -27,19 +27,72 @@ Events.Setpieces = {
 			},
 			'investigate': {
 				text: [
-					_('inside the pyramid, the head priest approaches.'),
+					_('inside the pyramid, the head shaman approaches.'),
 					_('he offers untold knowledge... but for a price.')
 				],
+				onLoad: function() {
+					World.markVisited(World.curPos[0], World.curPos[1]);
+					World.state.civ_one = true;
+				},
 				buttons: {
 					'talk': {
-						cost: {''} //figure out cost
+						cost: {'shamanic offerings': 1}
 						text: _('learn'),
-						nextScene: {1: } //finish up
+						nextScene: {1: 'learn'}
+					},
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			},
+			'learn': {
+				text: [
+					_('the shaman gives his thanks. he slowly begins a ritual.')
+					_('a powerful emotion takes hold, something never felt before...')
+					_('life is but a variable in a much larger equation.')
+				],
+				onLoad: function() {
+					$SM.addPerk('spiritual');
+				},
+				buttons: {
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
 					}
 				}
 			}
 		}
-	}*/
+	},
+	"barracks_civ": {
+		title: _('A Military Stronghold'),
+		scenes: {
+			'start': {
+				text: [
+					_('legions of soldiers march through the streets.'),
+					_('citizens run into homes and ')
+				]
+			}
+		}
+	},
+	"refugee_civ": {
+		title: _('A Refugee Camp'),
+		scenes: {
+
+		}
+	},
+	"science_civ": {
+		title: _('A Technology Center'),
+		scenes: {
+
+		}
+	},
+	"last_civ": {
+		title: _('A Familiar City'),
+		scences: {
+
+		}
+	},
 	"outpost": { /* Friendly Outpost */
 		title: _('An Outpost'),
 		scenes: {
