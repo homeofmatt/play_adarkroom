@@ -4,7 +4,6 @@ A Dark Room
 A Minimalist Text Adventure Game
 
 ### For original game
-==
 [Click to play](http://adarkroom.doublespeakgames.com/)  
 [ 
   [Chinese](http://adarkroom.doublespeakgames.com/?lang=cn) |
@@ -16,12 +15,10 @@ A Minimalist Text Adventure Game
 ]
   
 ### My version so far
-==
 [Play on GitHub](http://homeofmatt.github.io)
 
 
 ### My progress/goals
-==
 * (Done) Make spaceship inaccessible until player has traveled to civilizations and completed their challenges.
 * (Done) Add 'worldly' perk to allow completion of game
 * Civilizations:
