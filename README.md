@@ -35,3 +35,15 @@ A Minimalist Text Adventure Game
 * Figure out how to notify system when city is visited & quest is begun
 
 I will be adding more once I complete this list...
+
+### Install Document
+
+To be written...
+
+### Contributors
+
+homeofmatt
+
+### License 
+
+This derivation of adarkroom is licensed under the Mozilla Public License Version 2.0. For more information, please read the license file in the adarkroom repository. 
