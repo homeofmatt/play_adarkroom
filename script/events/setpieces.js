@@ -36,7 +36,7 @@ Events.Setpieces = {
 				},
 				buttons: {
 					'talk': {
-						cost: {'shamanic offerings': 1}
+						cost: {'shamanic offerings': 1},
 						text: _('learn'),
 						nextScene: {1: 'learn'}
 					},
