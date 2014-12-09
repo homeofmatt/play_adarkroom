@@ -33,6 +33,7 @@ A Minimalist Text Adventure Game
 * Create escape button for battles; randomly move character 3 spaces away from position
 * Add 'civilized' perk once 3 city challenges have been completed. (Not sure what it will do yet)
 * Figure out how to notify system when city is visited & quest is begun
+* Add an arcade-style score page for players to save and compare scores.
 
 I will be adding more once I complete this list...
 
