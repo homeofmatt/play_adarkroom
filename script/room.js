@@ -331,6 +331,19 @@ var Room = {
 					'sulphur': 50
 				};
 			}
+		},
+		'laser rifle': {
+			name: _('laser rifle'),
+			type: 'weapon',
+			buildMsg: _("advanced weaponry beyond the means of this world."),
+			cost: function() {
+				return {
+					'wood': 500,
+					'steel': 100,
+					'energy cell': 50,
+					'alien alloy': 1
+				}
+			}
 		}
 	},
 	
@@ -344,7 +357,7 @@ var Room = {
 		'teeth': {
 			type: 'good',
 			cost: function() {
-				return { fur: 300 };
+				return { fur: 150 };
 			}
 		},
 		'iron': {
@@ -420,8 +433,8 @@ var Room = {
 			type: 'weapon',
 			cost: function() {
 				return {
-					'scales': 100,
-					'teeth': 50
+					'iron': 30,
+					'bullets': 20
 				};
 			}
 		},
@@ -429,8 +442,8 @@ var Room = {
 			type: 'weapon',
 			cost: function() {
 				return {
-					'scales': 500,
-					'teeth': 250
+					'steel': 30,
+					'teeth': 50
 				};
 			}
 		},
@@ -438,9 +451,10 @@ var Room = {
 			type: 'good',
 			cost: function() {
 				return {
-					'fur': 1500,
-					'scales': 750,
-					'teeth': 300
+					'steel': 100,
+					'scales': 500,
+					'energy cell': 75,
+					'charm': 5
 				};
 			}
 		},
@@ -457,10 +471,82 @@ var Room = {
 		}
 	},
 	
-	MiscItems: {
+	/*MiscItems: {
 		'laser rifle': {
 			type: 'weapon'
 		}
+	},*/
+
+	CivPacks: {
+		//temple_civ/civ 1
+		'shamanic offerings': {
+			name: _('shamanic offerings'),
+			type: 'good',
+			buildMsg: _("furthering the cause of the almighty."),
+			cost: function() {
+				return {
+					'wood': 2000,
+					'fur': 1000,
+					'scales': 350,
+					'teeth': 500,
+					'charm': 15,
+					'alien alloy': 5
+				};
+			}
+		},
+		//barracks_civ/civ 2
+		'weapons cache': {
+			name: _('weapons cache'),
+			type: 'good',
+			buildMsg: _("better than war bonds."),
+			cost: function() {
+				return{
+					'wood': 2000,
+					'iron': 300,
+					'steel': 150,
+					'steel sword': 20,
+					'rifle': 20,
+					'bullets': 250,
+					'grenade': 15,
+					'alien alloy': 5
+				};
+			}
+		},
+		//refugee_civ/civ 3
+		'care package': {
+			name: _('care package'),
+			type: 'good',
+			buildMsg: _("strike down hunger and illness."),
+			cost: function() {
+				return{
+					'wood': 2000,
+					'meat': 1000,
+					'cured meat': 500,
+					'cloth': 300,
+					'sulphur': 250,
+					'medicine': 100,
+					'alien alloy': 5
+				};
+			}
+		},
+		//science_civ/civ 4
+		'lab supplies': {
+			name: _('lab supplies'),
+			type: 'good',
+			buildMsg: _("for science!"),
+			cost: function() {
+				return{
+					'wood': 2000,
+					'iron': 500,
+					'sulphur': 250,
+					'coal': 250,
+					'energy cell': 250,
+					'laser rifle': 3,
+					'alien alloy': 5
+				};
+			}
+		},
+		//last_civ/civ 5/brother
 	},
 	
 	name: _("Room"),
@@ -777,9 +863,11 @@ var Room = {
 				type = Room.Craftables[k].type;
 			} else if(Room.TradeGoods[k]) {
 				type = Room.TradeGoods[k].type;
-			} else if (Room.MiscItems[k]) {
+			} else if (Room.CivPacks[k]) {
+				type = Room.CivPacks[k].type;
+			}/*else if (Room.MiscItems[k]) {
 				type = Room.MiscItems[k].type;
-			}
+			}*/
 			
 			var location;
 			switch(type) {

@@ -76,6 +76,11 @@
 				name: _('spiritual'),
 				desc: _('shrines bestow temporary blessing'),
 				notify: _('learned of a higher calling')
+			},
+			'worldly': {
+				name: _('worldly'),
+				desc: _('wanderer ship can be salvaged'),
+				notify: _('learned how to get off this rock')
 			}
 		},
 		
@@ -132,6 +137,12 @@
 					$('<option>').text(display).val(name).appendTo(select)
 				});
 			}
+
+			$('<span>')
+				.addClass('goEarth menuBtn')
+				.text(_('go earth.'))
+				.click(Engine.goEarth)
+				.appendTo(menu);
 
 			$('<span>')
 				.addClass('lightsOff menuBtn')
@@ -468,7 +479,23 @@
 				$('.lightsOff').text(_('lights off.'));
 			}
 		},
-	
+		
+		goEarth: function() {
+			var earthCss = Engine.findStylesheet('makeItEarthy');
+			if (earthCss == null) {
+				$('head').append('<link rel="stylesheet" href="css/earth.css" type="text/css" title="makeItEarthy" />');
+				Engine.goEarth;
+				$('.goEarth').text(_('no earth.'));
+			} else if (earthCss.disabled) {
+				earthCss.disabled = false;
+				$('.goEarth').text(_('no earth.'));
+			} else {
+				$("#makeItEarthy").attr("disabled", "disabled");
+				earthCss.disabled = true;
+				$('.goEarth').text(_('go earth.'));
+			}
+		},
+		
 		// Gets a guid
 		getGuid: function() {
 			return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {

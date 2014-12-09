@@ -1,0 +1,182 @@
+body {
+	background-color: #AE6031;
+	color: #8A7264;
+}
+
+div.headerButton {
+	border-left: 1px solid #8A7264;
+}
+
+div#notifyGradient {
+	background-color: #AE6031;
+	background: -webkit-linear-gradient( rgba(39, 40, 35, 0) 0%, rgba(39, 40, 35, 1) 100% );
+	background: linear-gradient( rgba(39, 40, 35, 0) 0%, rgba(39, 40, 35, 1) 100% );
+	filter: alpha( Opacity=0, FinishOpacity=100, Style=1, StartX=0, StartY=0, FinishX=0, FinishY=500 );
+}
+
+div#saveNotify {
+	background: #AE6031;
+}
+
+.eventPanel:before {
+	background-color: #AE6031;
+}
+
+.eventTitle:after {]
+	background-color: #AE6031;
+}
+
+div.tooltip {
+	background-color: #111;
+	border: 1px solid black;
+	box-shadow: -1px 3px 2px #111;
+}
+
+div#population {
+	background-color: #AE6031;
+}
+
+div#village:before {
+	background: #AE6031;
+}
+
+div#village {
+	border: 1px solid #8A7264;
+}
+
+div#stores:before {
+	background: #AE6031;
+}
+
+div#stores {
+	border: 1px solid #8A7264;
+}
+
+div#weapons:before {
+	background: #AE6031;
+}
+
+div#weapons {
+	border: 1px solid #8A7264;
+}
+
+div#bagspace {
+	background-color: #AE6031;
+}
+
+div#outfitting:before {
+	background: #AE6031;
+}
+
+div#perks {
+	border: 1px solid #8A7264;
+}
+
+div#perks:before {
+	background-color: #AE6031;
+}
+
+div#outfitting {
+	border: 1px solid #8A7264;
+}
+
+#bagspace-world {
+	border: 1px solid #8A7264;
+}
+
+div.supplyItem {
+	border: 1px solid #8A7264;
+}
+
+#backpackTitle {
+	background-color: #AE6031;
+}
+
+#backpackSpace {
+	background-color: #AE6031;
+}
+
+#healthCounter {
+	background-color: #AE6031;
+}
+
+#map {
+	border: 1px solid #8A7264;
+}
+
+#map .landmark {
+	color: #8A7264;
+}
+
+#dropMenu {
+	background: none repeat scroll 0 0 #AE6031;
+	box-shadow: -1px 3px 2px #111;
+}
+
+div.button {
+	border: 1px solid #8A7264;
+}
+
+div.button.disabled, div.button.disabled:hover {
+	border-color: #444;
+	color: #444;
+}
+
+
+.upBtn:after, .upManyBtn:after {
+	border-color: transparent transparent #AE6031;
+}
+
+.upBtn:before, .upManyBtn:before {
+	border-color: transparent transparent #8A7264;
+}
+
+.upBtn.disabled:before, .upManyBtn.disabled:before {
+	border-color: transparent transparent #555;
+}
+
+.dnBtn:after, .dnManyBtn:after {
+	border-color: #AE6031 transparent transparent;
+}
+
+.dnBtn:before, .dnManyBtn:before {
+	border-color: #8A7264 transparent transparent;
+}
+
+.dnBtn.disabled:before, .dnManyBtn.disabled:before {
+	border-color: #555 transparent transparent;
+}
+
+body.noMask .eventTitle {
+	background-color: #8A7264;
+	color: #AE6031;
+}
+
+body.noMask .eventTitle:after {
+	background-color: #8A7264;
+}
+
+body.noMask .eventPanel {
+	background-color: #8A7264;
+}
+
+body.noMask #description {
+	color: #AE6031;
+}
+
+body.noMask #buttons > .button {
+	border: 1px solid #AE6031;
+	color: #AE6031;
+}
+
+#stars > div, #starsBack > div {
+	color: black;
+}
+
+.endGame {
+	color:#AE6031;
+}
+
+#theEnd {
+	color: #AE6031;
+}

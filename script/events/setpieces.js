@@ -3,6 +3,96 @@
  **/
  //include civilizations unresolved and resolved, also shrines w/o temple & w/ temple & useShrine
 Events.Setpieces = {
+	/* Civilizations */
+	"temple_civ": {
+		title: _('A Grand Temple'),
+		scenes: {
+			'start': {
+				text: [
+					_('a city of grand temples.'),
+					_('men, woman, children... all kneeling in prayer'),
+					_('ahead lies a pyramid of epic proportions.')
+				],
+				notification: _('a city of grand temples.'),
+				buttons: {
+					'enter': {
+						text: _('investigate'),
+						nextScene: {1: 'investigate'}
+					},
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			},
+			'investigate': {
+				text: [
+					_('inside the pyramid, the head shaman approaches.'),
+					_('he offers untold knowledge... but for a price.')
+				],
+				onLoad: function() {
+					World.markVisited(World.curPos[0], World.curPos[1]);
+					World.state.civ_one = true;
+				},
+				buttons: {
+					'talk': {
+						cost: {'shamanic offerings': 1},
+						text: _('learn'),
+						nextScene: {1: 'learn'}
+					},
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			},
+			'learn': {
+				text: [
+					_('the shaman gives his thanks. he slowly begins a ritual.'),
+					_('a powerful emotion takes hold, something never felt before...'),
+					_('life is but a variable in a much larger equation.')
+				],
+				onLoad: function() {
+					$SM.addPerk('spiritual');
+				},
+				buttons: {
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			}
+		}
+	},
+	"barracks_civ": {
+		title: _('A Military Stronghold'),
+		scenes: {
+			'start': {
+				text: [
+					_('legions of soldiers march through the streets.'),
+					_('citizens run into homes and ')
+				]
+			}
+		}
+	},
+	"refugee_civ": {
+		title: _('A Refugee Camp'),
+		scenes: {
+
+		}
+	},
+	"science_civ": {
+		title: _('A Technology Center'),
+		scenes: {
+
+		}
+	},
+	"last_civ": {
+		title: _('A Familiar City'),
+		scences: {
+
+		}
+	},
 	"outpost": { /* Friendly Outpost */
 		title: _('An Outpost'),
 		scenes: {
@@ -56,7 +146,7 @@ Events.Setpieces = {
 				text: [
 					_('encountered a strange altar, wrought from stone.'),
 					_('bones, remnants of past sacrifices, are scattered everywhere.'),
-					_('instructions are carved into the altar.')
+					_('ancient instructions are carved into the altar.')
 				],
 				buttons: {
 					'talk': {
@@ -72,12 +162,11 @@ Events.Setpieces = {
 			},
 			'worship': {
 				text: [
-					_("can't resist cutting hand and shedding blood onto the altar"),
-					_('something, somewhere approves.')
+					_("compelled to cut hand and shed blood onto the altar."),
+					_('something, somewhere approves...')
 				],
 				onLoad: function(){
 					World.useShrine();
-					World.Blessed += 10;
 				},
 				buttons: {
 					'leave': {
@@ -3186,18 +3275,34 @@ Events.Setpieces = {
 		title: _('A Crashed Ship'),
 		scenes: {
 			'start': {
+				text: [
+					_('the familiar curves of a wanderer vessel rise up out of the dust and ash. '),
+					_("with the right resources and a little effort, it might fly again..."),
+				],
+				buttons: {
+					'enter': {
+						perk: ('worldly'),
+						text: _('inspect'),
+						nextScene: {1: 'salvage'}
+					},
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			},
+			'salvage': {
 				onLoad: function() {
 					World.markVisited(World.curPos[0], World.curPos[1]);
 					World.drawRoad();
 					World.state.ship = true;
 				},
 				text: [
-					_('the familiar curves of a wanderer vessel rise up out of the dust and ash. '),
-					_("lucky that the natives can't work the mechanisms."),
-					_('with a little effort, it might fly again.')
+					_('with the resources of the five civilizations,'),
+					_('there finally may be a way off this rock.'),
 				],
 				buttons: {
-					'leavel': {
+					'leave': {
 						text: _('salvage'),
 						nextScene: 'end'
 					}
