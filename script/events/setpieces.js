@@ -48,8 +48,8 @@ Events.Setpieces = {
 			},
 			'learn': {
 				text: [
-					_('the shaman gives his thanks. he slowly begins a ritual.')
-					_('a powerful emotion takes hold, something never felt before...')
+					_('the shaman gives his thanks. he slowly begins a ritual.'),
+					_('a powerful emotion takes hold, something never felt before...'),
 					_('life is but a variable in a much larger equation.')
 				],
 				onLoad: function() {

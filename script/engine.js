@@ -481,7 +481,7 @@
 		},
 		
 		goEarth: function() {
-			var earthCss = engine.findStylesheet('makeItEarthy');
+			var earthCss = Engine.findStylesheet('makeItEarthy');
 			if (earthCss == null) {
 				$('head').append('<link rel="stylesheet" href="css/earth.css" type="text/css" title="makeItEarthy" />');
 				Engine.goEarth;
@@ -494,7 +494,8 @@
 				earthCss.disabled = true;
 				$('.goEarth').text(_('go earth.'));
 			}
-		}
+		},
+
 		// Gets a guid
 		getGuid: function() {
 			return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
