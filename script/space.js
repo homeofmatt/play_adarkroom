@@ -411,7 +411,38 @@ var Space = {
 								Engine.GAME_OVER = true;
 								Score.save();
 								Prestige.save();
-						
+
+								//create Parse object (for high score chart)
+								var GameScore = Parse.Object.extend("GameScore");
+								var gameScore = new GameScore();
+
+								//create array for high scores
+								var highScores = [];
+
+								//save users score to cloud
+								gameScore.save({
+									score: Score.calculateScore()
+								}, {
+  									success: function(gameScore) {
+  										var query = new Parse.Query(GameScore);
+										query.ascending("score");
+										query.limit(10);
+										query.find({
+											success: function(results){
+												for (var i = 0; i < results.length; i++) {
+													highScores.push(results[i]);
+												}
+											},
+											error: function(error) {
+    											alert("Error: " + error.code + " " + error.message);
+  											}
+										})
+ 									},
+  									error: function(gameScore, error) {
+    									alert('Failed to create new object, with error code: ' + error.message);
+  									}
+								});
+							
 								$('<center>')
 									.addClass('centerCont')
 									.appendTo('body');
@@ -427,6 +458,75 @@ var Space = {
 									.text(_('total score: {0}', Prestige.get().score))
 									.appendTo('.centerCont')
 									.animate({opacity:1},1500);
+								$('<br />')
+									.appendTo('.centerCont');
+								$('<span>')
+									.addClass('endGame')
+									.text(_("TOP SCORES"))
+									.appendTo('.centerCont')
+									.animate({opacity:1},1500);
+								$('<span>')
+									.addClass('endGame')
+									.text(_("------------"))
+									.appendTo('.centerCont')
+									.animate({opacity:1},1500);
+
+								$('<br />')
+									.appendTo('.centerCont');
+
+								//Top ten high scores
+								$('<span>')
+										.addClass('endGame')
+										.text(_('1.		{0}\n', highScores[0].get('score')))
+										.appendTo('.centerCont')
+										.animate({opacity:1},1500);
+								$('<span>')
+										.addClass('endGame')
+										.text(_('2.		{0}\n', highScores[1].get('score')))
+										.appendTo('.centerCont')
+										.animate({opacity:1},1500);
+								$('<span>')
+										.addClass('endGame')
+										.text(_('3.		{0}\n', highScores[2].get('score')))
+										.appendTo('.centerCont')
+										.animate({opacity:1},1500);
+								$('<span>')
+										.addClass('endGame')
+										.text(_('4.		{0}\n', highScores[3].get('score')))
+										.appendTo('.centerCont')
+										.animate({opacity:1},1500);
+								$('<span>')
+										.addClass('endGame')
+										.text(_('5.		{0}\n', highScores[4].get('score')))
+										.appendTo('.centerCont')
+										.animate({opacity:1},1500);
+								$('<span>')
+										.addClass('endGame')
+										.text(_('6.		{0}\n', highScores[5].get('score')))
+										.appendTo('.centerCont')
+										.animate({opacity:1},1500);
+								$('<span>')
+										.addClass('endGame')
+										.text(_('7.		{0}\n', highScores[6].get('score')))
+										.appendTo('.centerCont')
+										.animate({opacity:1},1500);
+								$('<span>')
+										.addClass('endGame')
+										.text(_('8.		{0}\n', highScores[7].get('score')))
+										.appendTo('.centerCont')
+										.animate({opacity:1},1500);
+								$('<span>')
+										.addClass('endGame')
+										.text(_('9.		{0}\n', highScores[8].get('score')))
+										.appendTo('.centerCont')
+										.animate({opacity:1},1500);
+								$('<span>')
+										.addClass('endGame')
+										.text(_('10.	{0}', highScores[9].get('score')))
+										.appendTo('.centerCont')
+										.animate({opacity:1},1500);
+								//end top scores
+
 								$('<br />')
 									.appendTo('.centerCont');
 								$('<br />')

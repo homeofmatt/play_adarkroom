@@ -495,7 +495,7 @@
 				$('.goEarth').text(_('go earth.'));
 			}
 		},
-		
+
 		// Gets a guid
 		getGuid: function() {
 			return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
