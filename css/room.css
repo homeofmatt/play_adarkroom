@@ -13,7 +13,7 @@ div#buildBtns:before {
 div#craftBtns {
 	position: absolute;
 	top: 50px;
-	left: 150px;
+	left: 119.25px;
 }
 
 div#craftBtns:before {
@@ -25,11 +25,23 @@ div#craftBtns:before {
 div#buyBtns {
 	position: absolute;
 	top: 50px;
-	left: 300px;
+	left: 238.5px;
 }
 
 div#buyBtns:before {
 	content: "buy:";
+	position: relative;
+	top: -5px;
+}
+
+div#civBtns {
+	position: absolute;
+	top: 50px;
+	left: 357.75px;
+}
+
+div#civBtns:before {
+	content: "civilizations:";
 	position: relative;
 	top: -5px;
 }

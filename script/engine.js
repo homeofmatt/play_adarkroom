@@ -138,15 +138,17 @@
 				});
 			}
 
-			$('<span>')
+			/*$('<span>')
 				.addClass('goEarth menuBtn')
 				.text(_('go earth.'))
 				.click(Engine.goEarth)
-				.appendTo(menu);
+				.appendTo(menu);*/
+
+			Engine.turnLightsOff();
 
 			$('<span>')
 				.addClass('lightsOff menuBtn')
-				.text(_('lights off.'))
+				.text(_('lights on.'))
 				.click(Engine.turnLightsOff)
 				.appendTo(menu);
 			

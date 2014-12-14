@@ -187,7 +187,7 @@ var Path = {
 			if (have < num) { num = have; }
 			var numAvailable = $SM.get('stores["'+k+'"]', true);
 			var row = $('div#outfit_row_' + k.replace(' ', '-'), outfit);
-			if((store.type == 'tool' || store.type == 'weapon') && have > 0) {
+			if((store.type == 'tool' || store.type == 'weapon' || store.type == 'pack') && have > 0) {
 				total += num * Path.getWeight(k);
 				if(row.length == 0) {
 					row = Path.createOutfittingRow(k, num, store.name);

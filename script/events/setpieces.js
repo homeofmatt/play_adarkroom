@@ -31,8 +31,8 @@ Events.Setpieces = {
 					_('he offers untold knowledge... but for a price.')
 				],
 				onLoad: function() {
-					World.markVisited(World.curPos[0], World.curPos[1]);
 					World.state.civ_one = true;
+					$SM.set('game.cityOne_visit', true);
 				},
 				buttons: {
 					'talk': {
@@ -54,6 +54,8 @@ Events.Setpieces = {
 				],
 				onLoad: function() {
 					$SM.addPerk('spiritual');
+					$SM.set('game.cityOne', true);
+					World.markVisited(World.curPos[0], World.curPos[1]);
 				},
 				buttons: {
 					'leave': {
@@ -71,28 +73,176 @@ Events.Setpieces = {
 				text: [
 					_('legions of soldiers march through the streets.'),
 					_('citizens run into homes and ')
-				]
+				],
+				notification: _('a city of military mastery.'),
+				buttons: {
+					'enter': {
+						text: _('investigate'),
+						nextScene: {1: 'investigate'}
+					},
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			},
+			'investigate': {
+				text: [
+					_('')
+				],
+				onLoad: function() {
+					World.state.civ_two = true;
+					$SM.set('game.cityTwo_visit', true);
+				},
+				buttons: {
+					'talk': {
+						cost: {'weapons cache': 1},
+						text: _('negotiate'),
+						nextScene: {1: 'negotiate'}
+					},
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			},
+			'negotiate': {
+				text: [
+					_('')
+				],
+				onLoad: function() {
+					//allow modern armor to be built
+					$SM.set('game.cityTwo', true);
+					World.markVisited(World.curPos[0], World.curPos[1]);
+				},
+				buttons: {
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
 			}
 		}
 	},
 	"refugee_civ": {
 		title: _('A Refugee Camp'),
 		scenes: {
-
+			'start': {
+				text: [
+					_('')
+				],
+				notification: _('a city of survivors.'),
+				buttons: {
+					'enter': {
+						text: _('investigate'),
+						nextScene: {1: 'investigate'}
+					},
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			},
+			'investigate': {
+				text: [
+					_('')
+				],
+				onLoad: function() {
+					World.state.civ_three = true;
+					$SM.set('game.cityThree_visit', true);
+				},
+				buttons: {
+					'talk': {
+						cost: {'care package': 1},
+						text: _('discuss'),
+						nextScene: {1: 'discuss'}
+					},
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			},
+			'discuss': {
+				text: [
+					_('')
+				],
+				onLoad: function() {
+					$SM.set('game.cityThree', true);
+					World.markVisited(World.curPos[0], World.curPos[1]);
+				},
+				buttons: {
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			}
 		}
 	},
 	"science_civ": {
 		title: _('A Technology Center'),
 		scenes: {
-
+			'start': {
+				text: [
+					_('')
+				],
+				notification: _('a city of innovation.'),
+				buttons: {
+					'enter': {
+						text: _('investigate'),
+						nextScene: {1: 'investigate'}
+					},
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			},
+			'investigate': {
+				text: [
+					_('')
+				],
+				onLoad: function() {
+					World.state.civ_four = true;
+					$SM.set('game.cityFour_visit', true);
+				},
+				buttons: {
+					'talk': {
+						cost: {'lab supplies': 1},
+						text: _('discuss'),
+						nextScene: {1: 'discuss'}
+					},
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			},
+			'learn': {
+				text: [
+					_('')
+				],
+				onLoad: function() {
+					//allow for creation of adrenaline
+					$SM.set('game.cityFour', true);
+					World.markVisited(World.curPos[0], World.curPos[1]);
+				},
+				buttons: {
+					'leave': {
+						text: _('leave'),
+						nextScene: 'end'
+					}
+				}
+			}
 		}
 	},
-	"last_civ": {
+	/*"last_civ": {
 		title: _('A Familiar City'),
 		scences: {
 
 		}
-	},
+	},*/
 	"outpost": { /* Friendly Outpost */
 		title: _('An Outpost'),
 		scenes: {
@@ -3281,7 +3431,7 @@ Events.Setpieces = {
 				],
 				buttons: {
 					'enter': {
-						perk: ('worldly'),
+						perk: _('worldly'),
 						text: _('inspect'),
 						nextScene: {1: 'salvage'}
 					},

@@ -67,7 +67,7 @@ Events.Outside = [
 	{ /* Sickness */
 		title: _('Sickness'),
 		isAvailable: function() {
-			return Engine.activeModule == Outside && $SM.get('game.population', true) > 10 && $SM.get('game.population', true) < 50 && $SM.get('stores.medicine', true) > 0;
+			return Engine.activeModule == Outside && $SM.get('game.population', true) > 10 && $SM.get('game.population', true) < 50 && $SM.get('stores.medicine', true) > 0 && !$SM.get('civThree');
 		},
 		scenes: {
 			'start': {
@@ -123,7 +123,7 @@ Events.Outside = [
 	{ /* Plague */
 		title: _('Plague'),
 		isAvailable: function() {
-			return Engine.activeModule == Outside && $SM.get('game.population', true) > 50 && $SM.get('stores.medicine', true) > 0;
+			return Engine.activeModule == Outside && $SM.get('game.population', true) > 50 && $SM.get('stores.medicine', true) > 0 && !$SM.get('civThree');
 		},
 		scenes: {
 			'start': {
@@ -216,7 +216,7 @@ Events.Outside = [
 	{ /* Soldier attack */
 		title: _('A Military Raid'),
 		isAvailable: function() {
-			return Engine.activeModule == Outside && $SM.get('game.population', true) > 0 && $SM.get('game.cityCleared');;
+			return Engine.activeModule == Outside && $SM.get('game.population', true) > 0 && $SM.get('game.cityCleared');
 		},
 		scenes: {
 			'start': {
@@ -243,5 +243,147 @@ Events.Outside = [
 				}
 			}
 		}
-	}
+	},
+
+	{ /* Civ 1 donation */
+		title: _('Allies in Spirit'),
+		isAvailable: function() {
+			return Engine.activeModule == Outside && $SM.get('game.population', true) > 0 && $SM.get('game.civOne');
+		},
+		scenes: {
+			'start': {
+				text: [
+					_('soft chanting is heard from a distance.'),
+					_('a group of monks, garbed in hooded robes appear at the city gates.'),
+					_('they present a gift of goods and spiritual items before disappearing into the forest.')
+				],
+				reward: {
+					scales: 100,
+					teeth: 100,
+					medicine: 10,
+					'cured meat': 50,
+					leather: 25,
+					'alien alloy': {
+						min: 1,
+						max: 1,
+						chance: 0.1
+					}
+				},
+
+				blink: true,
+				buttons: {
+					'end': {
+						text: _('accept'),
+						nextScene: 'end'
+					}
+				}
+			}
+		}
+	},
+
+	{ /* Civ 2 donation */
+		title: _('Allies in War'),
+		isAvailable: function() {
+			return Engine.activeModule == Outside && $SM.get('game.population', true) > 0 && $SM.get('game.civTwo');
+		},
+		scenes: {
+			'start': {
+				text: [
+					_('a troop of highly disciplined soldiers marches up to the city gates.'),
+					_('they are allies... from a nearby civilization once visited.'),
+					_('the captain approaches, offering ammunition and weapons.')
+				],
+				reward: {
+					bullets: 100,
+					grenade: 10,
+					rifle: 5,
+					'steel sword': 3,
+					'alien alloy': {
+						min: 1,
+						max: 1,
+						chance: 0.1
+					}
+				},
+
+				blink: true,
+				buttons: {
+					'end': {
+						text: _('accept'),
+						nextScene: 'end'
+					}
+				}
+			}
+		}
+	},
+
+	{ /* Civ 3 donation */
+		title: _('Allies in Morals'),
+		isAvailable: function() {
+			return Engine.activeModule == Outside && $SM.get('game.population', true) > 0 && $SM.get('game.civThree');
+		},
+		scenes: {
+			'start': {
+				text: [
+					_('a caravan of families from a far off civilization approach the city.'),
+					_('for helping them once, they give you gifts of appreciation.')
+				],
+				reward: {
+					fur: 100,
+					'cured meat': 50,
+					leather: 50,
+					medicine: 10,
+					wood: 250,
+					'alien alloy': {
+						min: 1,
+						max: 1,
+						chance: 0.5
+					}
+				},
+
+				blink: true,
+				buttons: {
+					'end': {
+						text: _('accept'),
+						nextScene: 'end'
+					}
+				}
+			}
+		}
+	},
+
+	{ /* Civ 4 donation */
+		title: _('Allies in Innovation'),
+		isAvailable: function() {
+			return Engine.activeModule == Outside && $SM.get('game.population', true) > 0 && $SM.get('game.civFour');
+		},
+		scenes: {
+			'start': {
+				text: [
+					_('a group of scientists, toting laser rifles for protection, ride up to the city.'),
+					_('they clamor on about their research and the many discoveries they have made.'),
+					_('for supporting their civilization in the past, they offer many gifts.')
+				],
+				reward: {
+					'laser rifle': 3,
+					'energy cell': 90,
+					iron: 30,
+					steel: 15,
+					adrenaline: 10,
+					'alien alloy': {
+						min: 1,
+						max: 1,
+						chance: 1
+					}
+				},
+
+				blink: true,
+				buttons: {
+					'end': {
+						text: _('accept'),
+						nextScene: 'end'
+					}
+				}
+			}
+		}
+	},
 ];

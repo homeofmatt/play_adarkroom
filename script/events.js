@@ -673,15 +673,12 @@ var Events = {
 				Button.setDisabled(btnEl, disabled);
 			} else if(b.perk) {
 				var disabled = false;
-				for(var p_name in b.perk) {
-					var has_perk = $SM.hasPerk(p_name);
-					if(typeof has_perk != 'boolean') has_perk = false;
-					if(has_perk != true){
-						//does not have perk
-						disabled = true;
-						break;
-					}
+				if(!$SM.hasPerk(b.perk)){
+					//does not have perk
+					disabled = true;
+					break;
 				}
+
 				Button.setDisabled(btnEl, disabled);
 			}
 		}
@@ -714,6 +711,14 @@ var Events = {
 		if(typeof info.onChoose == 'function') {
 			var textarea = Events.eventPanel().find('textarea');
 			info.onChoose(textarea.length > 0 ? textarea.val() : null);
+		}
+
+		// Perk
+		if(info.perk) {
+			if(!$SM.hasPerk(info.perk)) {
+				//Don't have perk
+				return;
+			}
 		}
 		
 		// Reward

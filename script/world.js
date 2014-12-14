@@ -25,7 +25,7 @@ var World = {
 		BARRACKS_CIV: '2',
 		REFUGEE_CIV: '3',
 		SCIENCE_CIV: '4',
-		LAST_CIV: '5',
+		//LAST_CIV: '5',
 		SHRINE: 'W'
 	},
 	TILE_PROBS: {},
@@ -36,7 +36,7 @@ var World = {
 	MOVES_PER_FOOD: 2,
 	MOVES_PER_WATER: 1,
 	DEATH_COOLDOWN: 0, //DEBUGGING og val: 120
-	FIGHT_CHANCE: 0.20,
+	FIGHT_CHANCE: 0, //DEBUGGING og val: 0.20
 	BASE_HEALTH: 999, //DEBUGGING og val: 10
 	BASE_HIT_CHANCE: 0.8,
 	MEAT_HEAL: 8,
@@ -136,11 +136,11 @@ var World = {
 		World.LANDMARKS[World.TILE.BOREHOLE] = { num: 10, minRadius: 15, maxRadius: World.RADIUS * 1.5, scene: 'borehole', label:  _('A&nbsp;Borehole')};
 		World.LANDMARKS[World.TILE.BATTLEFIELD] = { num: 5, minRadius: 18, maxRadius: World.RADIUS * 1.5, scene: 'battlefield', label:  _('A&nbsp;Battlefield')};
 		World.LANDMARKS[World.TILE.SWAMP] = { num: 1, minRadius: 15, maxRadius: World.RADIUS * 1.5, scene: 'swamp', label:  _('A&nbsp;Murky&nbsp;Swamp')};
-		World.LANDMARKS[World.TILE.TEMPLE_CIV] = { num: 1, minRadius: 18, maxRadius: 21, scene: 'temple_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.TEMPLE_CIV] = { num: 1, minRadius: 15, maxRadius: 18, scene: 'temple_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
 		World.LANDMARKS[World.TILE.BARRACKS_CIV] = { num: 1, minRadius: 21, maxRadius: 24, scene: 'barracks_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
-		World.LANDMARKS[World.TILE.REFUGEE_CIV] = { num: 1, minRadius: 24, maxRadius: 27, scene: 'refugee_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
-		World.LANDMARKS[World.TILE.SCIENCE_CIV] = { num: 1, minRadius: 27, maxRadius: 30, scene: 'science_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
-		World.LANDMARKS[World.TILE.LAST_CIV] = { num: 1, minRadius: 30, maxRadius: World.RADIUS * 1.5, scene: 'last_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.REFUGEE_CIV] = { num: 1, minRadius: 27, maxRadius: 30, scene: 'refugee_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		World.LANDMARKS[World.TILE.SCIENCE_CIV] = { num: 1, minRadius: 33, maxRadius: 36, scene: 'science_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
+		//World.LANDMARKS[World.TILE.LAST_CIV] = { num: 1, minRadius: 30, maxRadius: World.RADIUS * 1.5, scene: 'last_civ', label: _('A&nbsp;Grand&npsp;Civilization')};
 		World.LANDMARKS[World.TILE.SHRINE] = { num: 5, minRadius: 10, maxRadius: World.RADIUS * 1.5, scene: 'shrine', label: _('An&nbsp;Ancient&nbsp;Shrine')};
 		
 		// Only add the cache if there is prestige data
@@ -872,7 +872,8 @@ var World = {
 			Ship.init();
 			Engine.event('progress', 'ship');
 		}
-		World.state = null;
+		/*if(World.state.civ_one && //working here)
+		World.state = null;*/
 		
 		// Clear the embark cooldown
 		var btn = Button.clearCooldown($('#embarkButton'));
@@ -949,7 +950,7 @@ var World = {
 
 	useShrine: function() {
 		Notifications.notify(null, _('blessed'));
-		World.Blessed += 20;
+		World.Blessed = 15;
 		//Mark shrine as used
 		World.usedShrines[World.curPos[0] + ',' + World.curPos[1]] = true;
 	},

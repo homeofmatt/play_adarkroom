@@ -23,7 +23,7 @@ var Room = {
 			cost: function() {
 				var n = $SM.get('game.buildings["trap"]', true);
 				return {
-					'wood': 10 + (n*10)
+					'wood': 10// + (n*10)
 				};
 			}
 		},
@@ -36,7 +36,8 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 30
+					'wood': 1
+					/*'wood': 30*/
 				};
 			}
 		},
@@ -51,7 +52,7 @@ var Room = {
 			cost: function() {
 				var n = $SM.get('game.buildings["hut"]', true);
 				return {
-					'wood': 100 + (n*50)
+					'wood': 10 //100 + (n*50)
 				};
 			}
 		},
@@ -64,9 +65,9 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					wood: 200,
-					fur: 10,
-					meat: 5
+					wood: 10 //200,
+					//fur: 10,
+					//meat: 5
 				};
 			}
 		},
@@ -79,8 +80,8 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 400,
-					'fur': 100
+					'wood': 10//400,
+					//'fur': 100
 				};
 			}
 		},
@@ -93,8 +94,8 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 500,
-					'fur': 50
+					'wood': 10 //500,
+					//'fur': 50
 				};
 			}
 		},
@@ -107,8 +108,8 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 600,
-					'meat': 50
+					'wood': 10//600,
+					//'meat': 50
 				};
 			}
 		},
@@ -121,9 +122,9 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 800,
-					'leather': 100,
-					'scales': 10
+					'wood': 10//800,
+					//'leather': 100,
+					//'scales': 10
 				};
 			}
 		},
@@ -136,9 +137,9 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 1500,
-					'iron': 100,
-					'coal': 100
+					'wood': 10//1500,
+					//'iron': 100,
+					//'coal': 100
 				};
 			}
 		},
@@ -151,9 +152,9 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 3000,
-					'steel': 100,
-					'sulphur': 50
+					'wood': 10//3000,
+					//'steel': 100,
+					//'sulphur': 50
 				};
 			}
 		},
@@ -177,7 +178,8 @@ var Room = {
 			buildMsg: _('this waterskin\'ll hold a bit of water, at least'),
 			cost: function() {
 				return {
-					'leather': 50
+					'wood': 10
+					//'leather': 50
 				};
 			}
 		},
@@ -189,8 +191,9 @@ var Room = {
 			buildMsg: _('the cask holds enough water for longer expeditions'),
 			cost: function() {
 				return {
-					'leather': 100,
-					'iron': 20
+					'wood': 10
+					//'leather': 100,
+					//'iron': 20
 				};
 			}
 		},
@@ -202,8 +205,9 @@ var Room = {
 			buildMsg: _('never go thirsty again'),
 			cost: function() {
 				return {
-					'iron': 100,
-					'steel': 50
+					'wood': 10
+					//'iron': 100,
+					//'steel': 50
 				};
 			}
 		},
@@ -214,8 +218,8 @@ var Room = {
 			buildMsg: _("this spear's not elegant, but it's pretty good at stabbing"),
 			cost: function() {
 				return {
-					'wood': 100,
-					'teeth': 5
+					'wood': 10//100,
+					//'teeth': 5
 				};
 			}
 		},
@@ -227,7 +231,8 @@ var Room = {
 			buildMsg: _('carrying more means longer expeditions to the wilds'),
 			cost: function() {
 				return {
-					'leather': 200
+					'wood': 10
+					//'leather': 200
 				};
 			}
 		},
@@ -239,8 +244,8 @@ var Room = {
 			buildMsg: _('the wagon can carry a lot of supplies'),
 			cost: function() {
 				return {
-					'wood': 500,
-					'iron': 100
+					'wood': 10 //500,
+					//'iron': 100
 				};
 			}
 		},
@@ -252,9 +257,9 @@ var Room = {
 			buildMsg: _('the convoy can haul mostly everything'),
 			cost: function() {
 				return {
-					'wood': 1000,
-					'iron': 200,
-					'steel': 100
+					'wood': 10//1000,
+					//'iron': 200,
+					//'steel': 100
 				};
 			}
 		},
@@ -265,8 +270,9 @@ var Room = {
 			buildMsg: _("leather's not strong. better than rags, though."),
 			cost: function() {
 				return {
-					'leather': 200,
-					'scales': 20
+					'wood': 10
+					//'leather': 200,
+					//'scales': 20
 				};
 			}
 		},
@@ -277,8 +283,9 @@ var Room = {
 			buildMsg: _("iron's stronger than leather"),
 			cost: function() {
 				return {
-					'leather': 200,
-					'iron': 100
+					'wood': 10
+					//'leather': 200,
+					//'iron': 100
 				};
 			}
 		},
@@ -289,8 +296,9 @@ var Room = {
 			buildMsg: _("steel's stronger than iron"),
 			cost: function() {
 				return {
-					'leather': 200,
-					'steel': 100
+					'wood': 10
+					//'leather': 200,
+					//'steel': 100
 				};
 			}
 		},
@@ -301,9 +309,9 @@ var Room = {
 			buildMsg: _("sword is sharp. good protection out in the wilds."),
 			cost: function() {
 				return {
-					'wood': 200,
-					'leather': 50,
-					'iron': 20
+					'wood': 10//200,
+					//'leather': 50,
+					//'iron': 20
 				};
 			}
 		},
@@ -314,9 +322,9 @@ var Room = {
 			buildMsg: _("the steel is strong, and the blade true."),
 			cost: function() {
 				return {
-					'wood': 500,
-					'leather': 100,
-					'steel': 20
+					'wood': 10//500,
+					//'leather': 100,
+					//'steel': 20
 				};
 			}
 		},
@@ -326,9 +334,9 @@ var Room = {
 			buildMsg: _("black powder and bullets, like the old days."),
 			cost: function() {
 				return {
-					'wood': 200,
-					'steel': 50,
-					'sulphur': 50
+					'wood': 10//200,
+					//'steel': 50,
+					//'sulphur': 50
 				};
 			}
 		},
@@ -338,11 +346,83 @@ var Room = {
 			buildMsg: _("advanced weaponry beyond the means of this world."),
 			cost: function() {
 				return {
-					'wood': 500,
-					'steel': 100,
-					'energy cell': 50,
-					'alien alloy': 1
+					'wood': 10
+					//'iron': 250,
+					//'steel': 100,
+					//'energy cell': 50,
+					//'alien alloy': 1
 				}
+			}
+		},
+		//temple_civ/civ 1
+		'shamanic offerings': {
+			name: _('shamanic offerings'),
+			type: 'pack',
+			buildMsg: _("furthering the cause of the almighty."),
+			cost: function() {
+				return {
+					'wood': 10
+					/*
+					'wood': 2000,
+					'fur': 1000,
+					'scales': 350,
+					'teeth': 500,
+					'charm': 15,
+					'alien alloy': 5
+					*/
+				};
+			}
+		},
+		//barracks_civ/civ 2
+		'weapons cache': {
+			name: _('weapons cache'),
+			type: 'pack',
+			buildMsg: _("better than war bonds."),
+			cost: function() {
+				return{
+					'wood': 10//2000,
+					/*'iron': 300,
+					'steel': 150,
+					'steel sword': 20,
+					'rifle': 20,
+					'bullets': 250,
+					'grenade': 15,
+					'alien alloy': 5*/
+				};
+			}
+		},
+		//refugee_civ/civ 3
+		'care package': {
+			name: _('care package'),
+			type: 'pack',
+			buildMsg: _("strike down hunger and illness."),
+			cost: function() {
+				return{
+					'wood': 10//2000,
+					/*'meat': 1000,
+					'cured meat': 500,
+					'cloth': 300,
+					'sulphur': 250,
+					'medicine': 100,
+					'alien alloy': 5*/
+				};
+			}
+		},
+		//science_civ/civ 4
+		'lab supplies': {
+			name: _('lab supplies'),
+			type: 'pack',
+			buildMsg: _("for science!"),
+			cost: function() {
+				return{
+					'wood': 10//2000,
+					/*'iron': 500,
+					'sulphur': 250,
+					'coal': 250,
+					'energy cell': 250,
+					'laser rifle': 5,
+					'alien alloy': 5*/
+				};
 			}
 		}
 	},
@@ -392,7 +472,9 @@ var Room = {
 			type: 'good',
 			cost: function() {
 				return {
-					'scales': 50, 'teeth': 30
+					'wood': 10
+					//'scales': 50, 
+					//'teeth': 30
 				};
 			}
 		},
@@ -469,84 +551,6 @@ var Room = {
 				};
 			}
 		}
-	},
-	
-	/*MiscItems: {
-		'laser rifle': {
-			type: 'weapon'
-		}
-	},*/
-
-	CivPacks: {
-		//temple_civ/civ 1
-		'shamanic offerings': {
-			name: _('shamanic offerings'),
-			type: 'good',
-			buildMsg: _("furthering the cause of the almighty."),
-			cost: function() {
-				return {
-					'wood': 2000,
-					'fur': 1000,
-					'scales': 350,
-					'teeth': 500,
-					'charm': 15,
-					'alien alloy': 5
-				};
-			}
-		},
-		//barracks_civ/civ 2
-		'weapons cache': {
-			name: _('weapons cache'),
-			type: 'good',
-			buildMsg: _("better than war bonds."),
-			cost: function() {
-				return{
-					'wood': 2000,
-					'iron': 300,
-					'steel': 150,
-					'steel sword': 20,
-					'rifle': 20,
-					'bullets': 250,
-					'grenade': 15,
-					'alien alloy': 5
-				};
-			}
-		},
-		//refugee_civ/civ 3
-		'care package': {
-			name: _('care package'),
-			type: 'good',
-			buildMsg: _("strike down hunger and illness."),
-			cost: function() {
-				return{
-					'wood': 2000,
-					'meat': 1000,
-					'cured meat': 500,
-					'cloth': 300,
-					'sulphur': 250,
-					'medicine': 100,
-					'alien alloy': 5
-				};
-			}
-		},
-		//science_civ/civ 4
-		'lab supplies': {
-			name: _('lab supplies'),
-			type: 'good',
-			buildMsg: _("for science!"),
-			cost: function() {
-				return{
-					'wood': 2000,
-					'iron': 500,
-					'sulphur': 250,
-					'coal': 250,
-					'energy cell': 250,
-					'laser rifle': 3,
-					'alien alloy': 5
-				};
-			}
-		},
-		//last_civ/civ 5/brother
 	},
 	
 	name: _("Room"),
@@ -626,6 +630,7 @@ var Room = {
 		 * 3 - Sleeping
 		 * 4 - Helping
 		 */
+
 		if($SM.get('game.builder.level') >= 0 && $SM.get('game.builder.level') < 3) {
 			Room._builderTimer = setTimeout(Room.updateBuilderState, Room._BUILDER_STATE_DELAY);
 		}
@@ -863,10 +868,8 @@ var Room = {
 				type = Room.Craftables[k].type;
 			} else if(Room.TradeGoods[k]) {
 				type = Room.TradeGoods[k].type;
-			} else if (Room.CivPacks[k]) {
+			}/* else if (Room.CivPacks[k]) {
 				type = Room.CivPacks[k].type;
-			}/*else if (Room.MiscItems[k]) {
-				type = Room.MiscItems[k].type;
 			}*/
 			
 			var location;
@@ -1012,6 +1015,7 @@ var Room = {
 		case 'good':
 		case 'weapon':
 		case 'tool':
+		case 'pack':
 		case 'upgrade':
 			numThings = $SM.get('stores["'+thing+'"]', true);
 			break;
@@ -1044,6 +1048,7 @@ var Room = {
 		case 'good':
 		case 'weapon':
 		case 'upgrade':
+		case 'pack':
 		case 'tool':
 			$SM.add('stores["'+thing+'"]', 1);
 			break;
@@ -1054,7 +1059,7 @@ var Room = {
 	},
 	
 	needsWorkshop: function(type) {
-		return type == 'weapon' || type == 'upgrade' || type =='tool';
+		return type == 'weapon' || type == 'upgrade' || type == 'tool' || type == 'pack';
 	},
 	
 	craftUnlocked: function(thing) {
@@ -1065,7 +1070,27 @@ var Room = {
 		var craftable = Room.Craftables[thing];
 		if(Room.needsWorkshop(craftable.type) && $SM.get('game.buildings["'+'workshop'+'"]', true) == 0) return false;
 		var cost = craftable.cost();
-		
+		var type = craftable.type;
+
+		//Show the button if is a civ and has been visited
+		if(type == "pack"){
+			if(thing == "shamanic offerings" && $SM.get('game.cityOne_visit', true) > 0){
+				Room.buttons[thing] = true;
+				return true;
+			} else if(thing == "weapons cache" && $SM.get('game.cityTwo_visit', true) > 0){
+				Room.buttons[thing] = true;
+				return true;
+			} else if(thing == "care package" && $SM.get('game.cityThree_visit', true) > 0){
+				Room.buttons[thing] = true;
+				return true;
+			} else if(thing == "lab supplies" && $SM.get('game.cityFour_visit', true) > 0){
+				Room.buttons[thing] = true;
+				return true;
+			} else{
+				return false;
+			}
+		}
+
 		//show button if one has already been built
 		if($SM.get('game.buildings["'+thing+'"]') > 0){
 			Room.buttons[thing] = true;
@@ -1122,6 +1147,14 @@ var Room = {
 			buySection = $('<div>').attr('id', 'buyBtns').css('opacity', 0);
 			bNeedsAppend = true;
 		}
+
+		var civSection = $('#civBtns');
+		var civNeedsAppend = false;
+		//check if any civs have been visited
+		if(civSection.length == 0 && (($SM.get('game.cityOne_visit', true) + $SM.get('game.cityTwo_visit', true) + $SM.get('game.cityThree_visit', true) + $SM.get('game.cityFour_visit', true)) > 0)) {
+			civSection = $('<div>').attr('id', 'civBtns').css('opacity', 0);
+			civNeedsAppend = true;
+		}
 		
 		for(var k in Room.Craftables) {
 			craftable = Room.Craftables[k];
@@ -1129,6 +1162,20 @@ var Room = {
 			if(craftable.button == null) {
 				if(Room.craftUnlocked(k)) {
 					var loc = Room.needsWorkshop(craftable.type) ? craftSection : buildSection;
+					
+					if(craftable.type == 'pack'){
+						loc = civSection;
+						if(k == 'shamanic offerings'){
+							k = 'mecca'
+						}else if(k == 'weapons cache'){
+							k = 'sparta'
+						}else if(k == 'care package'){
+							k = 'sanctuary'
+						}else if(k == 'lab supplies'){
+							k = 'manhattan'
+						}
+					};
+
 					craftable.button = new Button.Button({
 						id: 'build_' + k,
 						cost: craftable.cost(),
@@ -1199,6 +1246,9 @@ var Room = {
 		}
 		if(bNeedsAppend && buildSection.children().length > 0) {
 			buySection.appendTo('div#roomPanel').animate({opacity: 1}, 300, 'linear');
+		}
+		if(civNeedsAppend && civSection.children().length > 0) {
+			civSection.appendTo('div#roomPanel').animate({opacity: 1}, 300, 'linear');
 		}
 	},
 	

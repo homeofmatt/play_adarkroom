@@ -295,6 +295,25 @@ var StateManager = {
 				$SM.set('character.cityCleared', $SM.get('cityCleared'));
 				$SM.remove('cityCleared');
 			};
+			
+			//load cleared civilizations
+			if($SM.get('civOne')){
+				$SM.set('character.civOne', $SM.get('civOne'));
+				$SM.remove('civOne');
+			};
+			if($SM.get('civTwo')){
+				$SM.set('character.civTwo', $SM.get('civTwo'));
+				$SM.remove('civTwo');
+			};
+			if($SM.get('civThree')){
+				$SM.set('character.civThree', $SM.get('civThree'));
+				$SM.remove('civOne');
+			};
+			if($SM.get('civFour')){
+				$SM.set('character.civFour', $SM.get('civFour'));
+				$SM.remove('civFour');
+			};
+
 			$SM.set('version', 1.3);
 		};
 	},
