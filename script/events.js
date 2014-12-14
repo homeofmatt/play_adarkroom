@@ -8,6 +8,7 @@ var Events = {
 	_FIGHT_SPEED: 100,
 	_EAT_COOLDOWN: 5,
 	_MEDS_COOLDOWN: 7,
+	_ESCAPE_COOLDOWN: 5,
 	_LEAVE_COOLDOWN: 1,
 	STUN_DURATION: 4000,
 	BLINK_INTERVAL: false,
@@ -113,6 +114,9 @@ var Events = {
 		if((Path.outfit['medicine'] || 0) != 0) {
 			Events.createUseMedsButton().appendTo(btns);
 		}
+
+		Events.createEscapeButton().appendTo(btns);
+		
 		
 		// Set up the enemy attack timer
 		Events._enemyAttackTimer = setTimeout(Events.enemyAttack, scene.attackDelay * 1000);
@@ -155,6 +159,22 @@ var Events = {
 			Button.setDisabled(btn, true);
 		}
 		
+		return btn;
+	},
+
+	createEscapeButton: function(cooldown) {
+		if(cooldown == null) {
+			cooldown = Events._ESCAPE_COOLDOWN;
+		}
+
+		var btn = new Button.Button({
+			id: 'escape',
+			text: _('retreat'),
+			cooldown: cooldown,
+			click: Events.useEscape,
+		});
+
+
 		return btn;
 	},
 	
@@ -241,6 +261,39 @@ var Events = {
 				Events.drawFloatText('+' + World.medsHeal(), '#wanderer .hp');
 			}
 		}
+	},
+
+	useEscape: function() {
+		$('#escape').text(_("5..."));
+		setTimeout(function() {
+			$('#escape').text(_("4..."));
+		}, 1000);
+		setTimeout(function() {
+			$('#escape').text(_("3..."));
+		}, 2000);
+		setTimeout(function() {
+			$('#escape').text(_("2..."));
+		}, 3000);
+		setTimeout(function() {
+			$('#escape').text(_("1..."));
+		}, 4000);
+		setTimeout(function() {
+			if(!Events.won){
+				clearTimeout(Events._enemyAttackTimer);
+
+				var directions = [World.moveNorth, World.moveSouth, World.moveEast, World.moveWest];
+
+				for(var i = 0; i < 5; i++){
+
+					var index = Math.floor(Math.random() * directions.length)
+					var direction = directions[index];
+
+					direction();
+				}
+
+				Events.endEvent();
+			}
+		}, 5000);
 	},
 	
 	useWeapon: function(btn) {

@@ -347,7 +347,7 @@ var Room = {
 			cost: function() {
 				return {
 					'wood': 10
-					//'iron': 250,
+					//'iron': 150,
 					//'steel': 100,
 					//'energy cell': 50,
 					//'alien alloy': 1
