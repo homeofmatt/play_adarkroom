@@ -422,7 +422,7 @@ var Space = {
 								//var highScores = [];
 
 								//save users score to cloud
-								gameScore.save({
+								/*gameScore.save({
 									score: Score.calculateScore()
 								}, {
   									success: function(gameScore) {
@@ -443,7 +443,7 @@ var Space = {
   									error: function(gameScore, error) {
     									alert('Failed to create new object, with error code: ' + error.message);
   									}
-								});
+								});*/
 							
 								$('<center>')
 									.addClass('centerCont')
