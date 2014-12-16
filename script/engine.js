@@ -81,12 +81,17 @@
 				name: _('worldly'),
 				desc: _('wanderer ship can be salvaged'),
 				notify: _('learned how to get off this rock')
+			},
+			'immune': {
+				name: _('immune'),
+				desc: _('no more sickness or plague'),
+				notify: _('generosity never goes unnoticed')
 			}
 		},
 		
 		options: {
 			state: null,
-			debug: true,
+			debug: false,
 			log: false,
 			dropbox: false
 		},

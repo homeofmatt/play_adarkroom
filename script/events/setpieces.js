@@ -56,6 +56,9 @@ Events.Setpieces = {
 					$SM.addPerk('spiritual');
 					$SM.set('game.cityOne', true);
 					World.markVisited(World.curPos[0], World.curPos[1]);
+					if(($SM.get('game.cityOne', true) + $SM.get('game.cityTwo', true) + $SM.get('game.cityThree', true) + $SM.get('game.cityFour', true)) == 4){
+						$SM.addPerk('worldly');
+					}
 				},
 				buttons: {
 					'leave': {
@@ -72,7 +75,8 @@ Events.Setpieces = {
 			'start': {
 				text: [
 					_('legions of soldiers march through the streets.'),
-					_('citizens run into homes and ')
+					_('the main road leads to a coliseum.'),
+					_('roaring crowds and clashing steel can be heard.')
 				],
 				notification: _('a city of military mastery.'),
 				buttons: {
@@ -88,7 +92,9 @@ Events.Setpieces = {
 			},
 			'investigate': {
 				text: [
-					_('')
+					_('outside the coliseum, a sqaud of honor guards appears.'),
+					_('a very decorated officer strolls through the squadron.'),
+					_('he proposes a trade of weapons, a sign of respect.')
 				],
 				onLoad: function() {
 					World.state.civ_two = true;
@@ -108,12 +114,20 @@ Events.Setpieces = {
 			},
 			'negotiate': {
 				text: [
-					_('')
+					_('the officer is thankful for the generous gift.'),
+					_('he presents a sword with a blade of diamond.'),
+					_('he explains how to create diamond from coal.')
 				],
+				loot: {
+					'diamond sword': 1
+				},
 				onLoad: function() {
-					//allow modern armor to be built
+					//allow diamond armor and sword to be built
 					$SM.set('game.cityTwo', true);
 					World.markVisited(World.curPos[0], World.curPos[1]);
+					if(($SM.get('game.cityOne', true) + $SM.get('game.cityTwo', true) + $SM.get('game.cityThree', true) + $SM.get('game.cityFour', true)) == 4){
+						$SM.addPerk('worldly');
+					}
 				},
 				buttons: {
 					'leave': {
@@ -129,7 +143,9 @@ Events.Setpieces = {
 		scenes: {
 			'start': {
 				text: [
-					_('')
+					_('rundown homes and shops line the streets.'),
+					_('there is a sickness hanging in the air.'),
+					_('a hailing cry is heard from a makeshift hospital.')
 				],
 				notification: _('a city of survivors.'),
 				buttons: {
@@ -145,7 +161,10 @@ Events.Setpieces = {
 			},
 			'investigate': {
 				text: [
-					_('')
+					_('inside the building, men and women in scrubs running back and forth.'),
+					_('the sick laying on makeshift cots, no room to walk.'),
+					_('through the pandemonium a doctor calmly approaches.'),
+					_('he explains that plague has stricken his city and that they need help.')
 				],
 				onLoad: function() {
 					World.state.civ_three = true;
@@ -165,11 +184,18 @@ Events.Setpieces = {
 			},
 			'discuss': {
 				text: [
-					_('')
+					_("a single tear runs down the doctor's face."),
+					_('the generous donation will go a long way.'),
+					_('despite no material reward, the people'),
+					_('express their eternal gratitude and appreciation.')
 				],
 				onLoad: function() {
+					$SM.addPerk('immune');
 					$SM.set('game.cityThree', true);
 					World.markVisited(World.curPos[0], World.curPos[1]);
+					if(($SM.get('game.cityOne', true) + $SM.get('game.cityTwo', true) + $SM.get('game.cityThree', true) + $SM.get('game.cityFour', true)) == 4){
+						$SM.addPerk('worldly');
+					}
 				},
 				buttons: {
 					'leave': {
@@ -185,13 +211,15 @@ Events.Setpieces = {
 		scenes: {
 			'start': {
 				text: [
-					_('')
+					_('beautiful brick buildings surround the town square.'),
+					_('a clock tower at the center chimes to indicate mid-day.'),
+					_('a group of researchers in lab coats exit a building for lunch.')
 				],
 				notification: _('a city of innovation.'),
 				buttons: {
 					'enter': {
-						text: _('investigate'),
-						nextScene: {1: 'investigate'}
+						text: _('approach'),
+						nextScene: {1: 'approach'}
 					},
 					'leave': {
 						text: _('leave'),
@@ -199,9 +227,11 @@ Events.Setpieces = {
 					}
 				}
 			},
-			'investigate': {
+			'approach': {
 				text: [
-					_('')
+					_('the head scientist waves and advances quickly.'),
+					_('he explains his intrigue in foreign technology.'),
+					_('he proposes a friendly exchange of knowledge.')
 				],
 				onLoad: function() {
 					World.state.civ_four = true;
@@ -219,14 +249,19 @@ Events.Setpieces = {
 					}
 				}
 			},
-			'learn': {
+			'discuss': {
 				text: [
-					_('')
+					_('he is delighted at the advent of experimenting with new technology.'),
+					_('in exchange, he shares how to create and store raw adrenaline.'),
+					_('he adds that you will need a workshop to construct it...')
 				],
 				onLoad: function() {
 					//allow for creation of adrenaline
 					$SM.set('game.cityFour', true);
 					World.markVisited(World.curPos[0], World.curPos[1]);
+					if(($SM.get('game.cityOne', true) + $SM.get('game.cityTwo', true) + $SM.get('game.cityThree', true) + $SM.get('game.cityFour', true)) == 4){
+						$SM.addPerk('worldly');
+					}
 				},
 				buttons: {
 					'leave': {

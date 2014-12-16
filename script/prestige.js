@@ -30,6 +30,7 @@ var Prestige = {
 		{ store: 'bone spear', type: 'w' },
 		{ store: 'iron sword', type: 'w' },
 		{ store: 'steel sword', type: 'w' },
+		{ store: 'diamond sword', type: 'w'},
 		{ store: 'bayonet', type: 'w' },
 		{ store: 'rifle', type: 'w' },
 		{ store: 'laser rifle', type: 'w' },

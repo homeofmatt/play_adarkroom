@@ -408,16 +408,18 @@ var Space = {
 								$('#notifyGradient').attr('style', 'background-color:'+cur+';background:-webkit-' + s + ';background:' + s);
 							},
 							complete: function() {
+								//init for high score chart
+								//Parse.initialize("wqBj1fetbDbB8chuMdpufkS7jMVxzonvsWLT7aMi", "wuAgJ5B2P989h1zXR9Gv0Jz8CsGC0ciVpI4ASMBL");
 								Engine.GAME_OVER = true;
 								Score.save();
 								Prestige.save();
 
 								//create Parse object (for high score chart)
-								var GameScore = Parse.Object.extend("GameScore");
-								var gameScore = new GameScore();
+								//var GameScore = Parse.Object.extend("GameScore");
+								//var gameScore = new GameScore();
 
 								//create array for high scores
-								var highScores = [];
+								//var highScores = [];
 
 								//save users score to cloud
 								gameScore.save({
@@ -475,7 +477,8 @@ var Space = {
 									.appendTo('.centerCont');
 
 								//Top ten high scores
-								$('<span>')
+								//cant update high scores in the end for now w/o 10 existing scores
+								/*$('<span>')
 										.addClass('endGame')
 										.text(_('1.		{0}\n', highScores[0].get('score')))
 										.appendTo('.centerCont')
@@ -525,7 +528,7 @@ var Space = {
 										.text(_('10.	{0}', highScores[9].get('score')))
 										.appendTo('.centerCont')
 										.animate({opacity:1},1500);
-								//end top scores
+								//end top scores*/
 
 								$('<br />')
 									.appendTo('.centerCont');

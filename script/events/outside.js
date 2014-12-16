@@ -67,7 +67,7 @@ Events.Outside = [
 	{ /* Sickness */
 		title: _('Sickness'),
 		isAvailable: function() {
-			return Engine.activeModule == Outside && $SM.get('game.population', true) > 10 && $SM.get('game.population', true) < 50 && $SM.get('stores.medicine', true) > 0 && !$SM.get('civThree');
+			return Engine.activeModule == Outside && $SM.get('game.population', true) > 10 && $SM.get('game.population', true) < 50 && $SM.get('stores.medicine', true) > 0 && !$SM.hasPerk('immune');
 		},
 		scenes: {
 			'start': {
@@ -123,7 +123,7 @@ Events.Outside = [
 	{ /* Plague */
 		title: _('Plague'),
 		isAvailable: function() {
-			return Engine.activeModule == Outside && $SM.get('game.population', true) > 50 && $SM.get('stores.medicine', true) > 0 && !$SM.get('civThree');
+			return Engine.activeModule == Outside && $SM.get('game.population', true) > 50 && $SM.get('stores.medicine', true) > 0 && !$SM.hasPerk('immune');
 		},
 		scenes: {
 			'start': {

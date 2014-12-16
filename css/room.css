@@ -41,7 +41,7 @@ div#civBtns {
 }
 
 div#civBtns:before {
-	content: "civilizations:";
+	content: "challenges:";
 	position: relative;
 	top: -5px;
 }

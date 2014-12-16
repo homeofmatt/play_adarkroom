@@ -7,6 +7,7 @@ var Path = {
 		'bone spear': 2,
 		'iron sword': 3,
 		'steel sword': 5,
+		'diamond sword': 5,
 		'rifle': 5,
 		'bullets': 0.1,
 		'energy cell': 0.2,
@@ -136,7 +137,9 @@ var Path = {
 		
 		// Add the armour row
 		var armour = _("none");
-		if($SM.get('stores["s armour"]', true) > 0)
+		if($SM.get('stores["d armour"]', true) > 0)
+			armour = _("diamond");
+		else if($SM.get('stores["s armour"]', true) > 0)
 			armour = _("steel");
 		else if($SM.get('stores["i armour"]', true) > 0)
 			armour = _("iron");
@@ -176,7 +179,8 @@ var Path = {
 			'energy cell': {type: 'tool' },
 			'bayonet': {type: 'weapon' },
 			'charm': {type: 'tool'},
-			'medicine': {type: 'tool'}
+			'medicine': {type: 'tool'},
+			'adrenaline': {type: 'tool'}
 		}, Room.Craftables);
 		
 		for(var k in carryable) {
@@ -190,7 +194,10 @@ var Path = {
 			if((store.type == 'tool' || store.type == 'weapon' || store.type == 'pack') && have > 0) {
 				total += num * Path.getWeight(k);
 				if(row.length == 0) {
-					row = Path.createOutfittingRow(k, num, store.name);
+					if(store.name == 'd sword')
+						row = Path.createOutfittingRow(k, num, 'diamond sword');
+					else
+						row = Path.createOutfittingRow(k, num, store.name);
 					
 					var curPrev = null;
 					outfit.children().each(function(i) {

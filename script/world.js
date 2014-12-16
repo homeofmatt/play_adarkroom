@@ -31,17 +31,17 @@ var World = {
 	TILE_PROBS: {},
 	LANDMARKS: {},
 	STICKINESS: 0.5, // 0 <= x <= 1
-	LIGHT_RADIUS: 60, //DEBUGGING og val: 2
+	LIGHT_RADIUS: 2, //DEBUGGING og val: 2
 	BASE_WATER: 10,
 	MOVES_PER_FOOD: 2,
 	MOVES_PER_WATER: 1,
-	DEATH_COOLDOWN: 0, //DEBUGGING og val: 120
-	FIGHT_CHANCE: 0.2, //DEBUGGING og val: 0.20
-	BASE_HEALTH: 999, //DEBUGGING og val: 10
+	DEATH_COOLDOWN: 120,
+	FIGHT_CHANCE: 0.20,
+	BASE_HEALTH: 10,
 	BASE_HIT_CHANCE: 0.8,
 	MEAT_HEAL: 8,
 	MEDS_HEAL: 20,
-	FIGHT_DELAY: 3, // At least three moves between fights
+	FIGHT_DELAY: 5, // At least five moves between fights
 	NORTH: [ 0, -1],
 	SOUTH: [ 0,  1],
 	WEST:  [-1,  0],
@@ -72,6 +72,12 @@ var World = {
 			verb: _('slash'),
 			type: 'melee',
 			damage: 6,
+			cooldown: 2
+		},
+		'diamond sword': {
+			verb: _('rend'),
+			type: 'melee',
+			damage: 15,
 			cooldown: 2
 		},
 		'bayonet': {
@@ -432,12 +438,20 @@ var World = {
 				World.danger = true;
 				return true;
 			}
+			if(!$SM.get('stores["d armour"]', true) > 0 && World.getDistance() >= 28) {
+				World.danger = true;
+				return true;
+			}
 		} else {
 			if(World.getDistance() < 8) {
 				World.danger = false;
 				return true;
 			}
 			if(World.getDistance < 18 && $SM.get('stores["i armour"]', true) > 0) {
+				World.danger = false;
+				return true;
+			}
+			if(World.getDistance < 28 && $SM.get('stores["s armour"]', true) > 0) {
 				World.danger = false;
 				return true;
 			}
@@ -471,13 +485,23 @@ var World = {
 						Notifications.notify(World, _('starvation sets in'));
 						World.starvation = true;
 					} else {
-						$SM.set('character.starved', $SM.get('character.starved', true));
-						$SM.add('character.starved', 1);
-						if($SM.get('character.starved') >= 10 && !$SM.hasPerk('slow metabolism')) {
-							$SM.addPerk('slow metabolism');
+						if(Path.outfit['adrenaline'] > 0){
+							World.starvation = false;
+							World.setHp(World.health + World.meatHeal());
+							Path.outfit['adrenaline']--;
+							Notifications.notify(World, _('used adrenaline... not dead yet.'));
+							num = 5;
+							Path.outfit['cured meat'] = num;
+							if(World.water < 10){World.setWater(10);}
+						}else{
+							$SM.set('character.starved', $SM.get('character.starved', true));
+							$SM.add('character.starved', 1);
+							if($SM.get('character.starved') >= 10 && !$SM.hasPerk('slow metabolism')) {
+								$SM.addPerk('slow metabolism');
+							}
+							World.die();
+							return false;
 						}
-						World.die();
-						return false;
 					}
 				} else {
 					World.starvation = false;
@@ -500,13 +524,23 @@ var World = {
 						Notifications.notify(World, _('the thirst becomes unbearable'));
 						World.thirst = true;
 					} else {
-						$SM.set('character.dehydrated', $SM.get('character.dehydrated', true));
-						$SM.add('character.dehydrated', 1);
+						if(Path.outfit['adrenaline'] > 0){
+							World.thirst = false;
+							World.setHp(World.health + World.meatHeal());
+							Path.outfit['adrenaline']--;
+							Notifications.notify(World, _('used adrenaline... not dead yet.'));
+							water = 10;
+							World.setWater(water);
+							if(Path.outfit['cured meat'] < 5){Path.outfit['cured meat'] = 5;}
+						}else{
+							$SM.set('character.dehydrated', $SM.get('character.dehydrated', true));
+							$SM.add('character.dehydrated', 1);
 						if($SM.get('character.dehydrated') >= 10 && !$SM.hasPerk('desert rat')) {
-							$SM.addPerk('desert rat');
+								$SM.addPerk('desert rat');
+							}
+							World.die();
+							return false;
 						}
-						World.die();
-						return false;
 					}
 				} else {
 					World.thirst = false;
@@ -548,7 +582,9 @@ var World = {
 			//if current tile isn't an outpost/shrine, go. If it is, go if they aren't used
 			if(curTile != World.TILE.OUTPOST || !World.outpostUsed()) {
 				if(curTile != World.TILE.SHRINE || !World.shrineUsed()){
-					Events.startEvent(Events.Setpieces[World.LANDMARKS[curTile].scene]);
+					if(!$SM.get('game.escaping')){
+						Events.startEvent(Events.Setpieces[World.LANDMARKS[curTile].scene]);
+					}
 				}
 			}
 		} else {
@@ -899,7 +935,9 @@ var World = {
 	},
 	
 	getMaxHealth: function() {
-		if($SM.get('stores["s armour"]', true) > 0) {
+		if($SM.get('stores["d armour"]', true) > 0) {
+			return World.BASE_HEALTH + 75;
+		}else if($SM.get('stores["s armour"]', true) > 0) {
 			return World.BASE_HEALTH + 35;
 		} else if($SM.get('stores["i armour"]', true) > 0) {
 			return World.BASE_HEALTH + 15;

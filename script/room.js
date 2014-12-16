@@ -23,7 +23,7 @@ var Room = {
 			cost: function() {
 				var n = $SM.get('game.buildings["trap"]', true);
 				return {
-					'wood': 10// + (n*10)
+					'wood': 10 + (n*10)
 				};
 			}
 		},
@@ -36,8 +36,7 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 1
-					/*'wood': 30*/
+					'wood': 30
 				};
 			}
 		},
@@ -52,7 +51,7 @@ var Room = {
 			cost: function() {
 				var n = $SM.get('game.buildings["hut"]', true);
 				return {
-					'wood': 10 //100 + (n*50)
+					'wood': 100 + (n*50)
 				};
 			}
 		},
@@ -65,9 +64,9 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					wood: 10 //200,
-					//fur: 10,
-					//meat: 5
+					wood: 200,
+					fur: 10,
+					meat: 5
 				};
 			}
 		},
@@ -80,8 +79,8 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 10//400,
-					//'fur': 100
+					'wood': 400,
+					'fur': 100
 				};
 			}
 		},
@@ -94,8 +93,8 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 10 //500,
-					//'fur': 50
+					'wood': 500,
+					'fur': 50
 				};
 			}
 		},
@@ -108,8 +107,8 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 10//600,
-					//'meat': 50
+					'wood': 600,
+					'meat': 50
 				};
 			}
 		},
@@ -122,9 +121,9 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 10//800,
-					//'leather': 100,
-					//'scales': 10
+					'wood': 800,
+					'leather': 100,
+					'scales': 10
 				};
 			}
 		},
@@ -137,9 +136,9 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 10//1500,
-					//'iron': 100,
-					//'coal': 100
+					'wood': 1500,
+					'iron': 100,
+					'coal': 100
 				};
 			}
 		},
@@ -152,9 +151,9 @@ var Room = {
 			type: 'building',
 			cost: function() {
 				return {
-					'wood': 10//3000,
-					//'steel': 100,
-					//'sulphur': 50
+					'wood': 3000,
+					'steel': 100,
+					'sulphur': 50
 				};
 			}
 		},
@@ -178,8 +177,7 @@ var Room = {
 			buildMsg: _('this waterskin\'ll hold a bit of water, at least'),
 			cost: function() {
 				return {
-					'wood': 10
-					//'leather': 50
+					'leather': 50
 				};
 			}
 		},
@@ -191,9 +189,8 @@ var Room = {
 			buildMsg: _('the cask holds enough water for longer expeditions'),
 			cost: function() {
 				return {
-					'wood': 10
-					//'leather': 100,
-					//'iron': 20
+					'leather': 100,
+					'iron': 20
 				};
 			}
 		},
@@ -205,9 +202,8 @@ var Room = {
 			buildMsg: _('never go thirsty again'),
 			cost: function() {
 				return {
-					'wood': 10
-					//'iron': 100,
-					//'steel': 50
+					'iron': 100,
+					'steel': 50
 				};
 			}
 		},
@@ -218,8 +214,8 @@ var Room = {
 			buildMsg: _("this spear's not elegant, but it's pretty good at stabbing"),
 			cost: function() {
 				return {
-					'wood': 10//100,
-					//'teeth': 5
+					'wood': 100,
+					'teeth': 5
 				};
 			}
 		},
@@ -231,8 +227,7 @@ var Room = {
 			buildMsg: _('carrying more means longer expeditions to the wilds'),
 			cost: function() {
 				return {
-					'wood': 10
-					//'leather': 200
+					'leather': 200
 				};
 			}
 		},
@@ -244,8 +239,8 @@ var Room = {
 			buildMsg: _('the wagon can carry a lot of supplies'),
 			cost: function() {
 				return {
-					'wood': 10 //500,
-					//'iron': 100
+					'wood': 500,
+					'iron': 100
 				};
 			}
 		},
@@ -257,9 +252,9 @@ var Room = {
 			buildMsg: _('the convoy can haul mostly everything'),
 			cost: function() {
 				return {
-					'wood': 10//1000,
-					//'iron': 200,
-					//'steel': 100
+					'wood': 1000,
+					'iron': 200,
+					'steel': 100
 				};
 			}
 		},
@@ -270,9 +265,8 @@ var Room = {
 			buildMsg: _("leather's not strong. better than rags, though."),
 			cost: function() {
 				return {
-					'wood': 10
-					//'leather': 200,
-					//'scales': 20
+					'leather': 200,
+					'scales': 20
 				};
 			}
 		},
@@ -283,9 +277,8 @@ var Room = {
 			buildMsg: _("iron's stronger than leather"),
 			cost: function() {
 				return {
-					'wood': 10
-					//'leather': 200,
-					//'iron': 100
+					'leather': 200,
+					'iron': 100
 				};
 			}
 		},
@@ -296,10 +289,23 @@ var Room = {
 			buildMsg: _("steel's stronger than iron"),
 			cost: function() {
 				return {
-					'wood': 10
-					//'leather': 200,
-					//'steel': 100
+					'leather': 200,
+					'steel': 100
 				};
+			}
+		},
+		'd armour': {
+			name: _('d armour'),
+			type: 'upgrade',
+			maximum: 1,
+			buildMsg: _("diamond armor, nigh impenetrable"),
+			cost: function() {
+				return {
+					'leather': 200,
+					'coal': 2000,
+					'steel': 150,
+					'alien alloy': 3
+				}
 			}
 		},
 		'iron sword': {
@@ -309,9 +315,9 @@ var Room = {
 			buildMsg: _("sword is sharp. good protection out in the wilds."),
 			cost: function() {
 				return {
-					'wood': 10//200,
-					//'leather': 50,
-					//'iron': 20
+					'wood': 200,
+					'leather': 50,
+					'iron': 20
 				};
 			}
 		},
@@ -322,10 +328,25 @@ var Room = {
 			buildMsg: _("the steel is strong, and the blade true."),
 			cost: function() {
 				return {
-					'wood': 10//500,
-					//'leather': 100,
-					//'steel': 20
+					'wood': 500,
+					'leather': 100,
+					'steel': 20
 				};
+			}
+		},
+		'diamond sword': {
+			name: _('d sword'),
+			button: null,
+			type: 'weapon',
+			buildMsg: _("razor sharp diamond edges cut through a man with a single strike, body armour and all."),
+			cost: function() {
+				return {
+					'wood': 1000,
+					'leather': 200,
+					'coal': 500,
+					'steel': 50,
+					'alien alloy': 1
+				}
 			}
 		},
 		'rifle': {
@@ -334,9 +355,9 @@ var Room = {
 			buildMsg: _("black powder and bullets, like the old days."),
 			cost: function() {
 				return {
-					'wood': 10//200,
-					//'steel': 50,
-					//'sulphur': 50
+					'wood': 200,
+					'steel': 50,
+					'sulphur': 50
 				};
 			}
 		},
@@ -346,11 +367,10 @@ var Room = {
 			buildMsg: _("advanced weaponry beyond the means of this world."),
 			cost: function() {
 				return {
-					'wood': 10
-					//'iron': 150,
-					//'steel': 100,
-					//'energy cell': 50,
-					//'alien alloy': 1
+					'iron': 150,
+					'steel': 100,
+					'energy cell': 50,
+					'alien alloy': 1
 				}
 			}
 		},
@@ -361,15 +381,12 @@ var Room = {
 			buildMsg: _("furthering the cause of the almighty."),
 			cost: function() {
 				return {
-					'wood': 10
-					/*
 					'wood': 2000,
 					'fur': 1000,
 					'scales': 350,
 					'teeth': 500,
 					'charm': 15,
 					'alien alloy': 5
-					*/
 				};
 			}
 		},
@@ -380,14 +397,14 @@ var Room = {
 			buildMsg: _("better than war bonds."),
 			cost: function() {
 				return{
-					'wood': 10//2000,
-					/*'iron': 300,
+					'wood': 2000,
+					'iron': 300,
 					'steel': 150,
 					'steel sword': 20,
 					'rifle': 20,
 					'bullets': 250,
 					'grenade': 15,
-					'alien alloy': 5*/
+					'alien alloy': 5
 				};
 			}
 		},
@@ -398,13 +415,13 @@ var Room = {
 			buildMsg: _("strike down hunger and illness."),
 			cost: function() {
 				return{
-					'wood': 10//2000,
-					/*'meat': 1000,
+					'wood': 2000,
+					'meat': 1000,
 					'cured meat': 500,
 					'cloth': 300,
 					'sulphur': 250,
 					'medicine': 100,
-					'alien alloy': 5*/
+					'alien alloy': 5
 				};
 			}
 		},
@@ -415,13 +432,13 @@ var Room = {
 			buildMsg: _("for science!"),
 			cost: function() {
 				return{
-					'wood': 10//2000,
-					/*'iron': 500,
+					'wood': 2000,
+					'iron': 500,
 					'sulphur': 250,
 					'coal': 250,
 					'energy cell': 250,
 					'laser rifle': 5,
-					'alien alloy': 5*/
+					'alien alloy': 5
 				};
 			}
 		}
@@ -472,9 +489,8 @@ var Room = {
 			type: 'good',
 			cost: function() {
 				return {
-					'wood': 10
-					//'scales': 50, 
-					//'teeth': 30
+					'scales': 50, 
+					'teeth': 30
 				};
 			}
 		},
@@ -868,9 +884,7 @@ var Room = {
 				type = Room.Craftables[k].type;
 			} else if(Room.TradeGoods[k]) {
 				type = Room.TradeGoods[k].type;
-			}/* else if (Room.CivPacks[k]) {
-				type = Room.CivPacks[k].type;
-			}*/
+			}
 			
 			var location;
 			switch(type) {
@@ -1091,6 +1105,16 @@ var Room = {
 			}
 		}
 
+		//only show diamond armour and/or diamond sword if civ 2 is completed
+		if(thing == "d armour" || thing == "diamond sword"){
+			if($SM.get('game.cityTwo', true) > 0){
+				Room.buttons[thing] = true;
+				return true;
+			}else{
+				return false;
+			}
+		}
+
 		//show button if one has already been built
 		if($SM.get('game.buildings["'+thing+'"]') > 0){
 			Room.buttons[thing] = true;
@@ -1118,7 +1142,13 @@ var Room = {
 		if(Room.buttons[thing]) {
 			return true;
 		} else if($SM.get('game.buildings["trading post"]', true) > 0) {
-			if(thing == 'compass' || typeof $SM.get('stores["'+thing+'"]') != 'undefined') {
+			if(thing == 'adrenaline'){
+				if($SM.get('game.cityFour', true) > 0){
+					return true;
+				} else{
+					return false;
+				}
+			} else if(thing == 'compass' || typeof $SM.get('stores["'+thing+'"]') != 'undefined') {
 				// Allow the purchase of stuff once you've seen it
 				return true;
 			}
@@ -1163,23 +1193,29 @@ var Room = {
 				if(Room.craftUnlocked(k)) {
 					var loc = Room.needsWorkshop(craftable.type) ? craftSection : buildSection;
 					
+					var name = k;
+
 					if(craftable.type == 'pack'){
 						loc = civSection;
 						if(k == 'shamanic offerings'){
-							k = 'mecca'
+							name = 'mecca';
 						}else if(k == 'weapons cache'){
-							k = 'sparta'
+							name = 'sparta';
 						}else if(k == 'care package'){
-							k = 'sanctuary'
+							name = 'sanctuary';
 						}else if(k == 'lab supplies'){
-							k = 'manhattan'
+							name = 'manhattan';
 						}
 					};
+
+					if(k == "diamond sword"){
+						name = "d sword";
+					}
 
 					craftable.button = new Button.Button({
 						id: 'build_' + k,
 						cost: craftable.cost(),
-						text: _(k),
+						text: _(name),
 						click: Room.build,
 						width: '80px',
 						ttPos: loc.children().length > 10 ? 'top right' : 'bottom right'

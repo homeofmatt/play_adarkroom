@@ -78,7 +78,7 @@
 		div#buildBtns:before{ content: \''+ _("build:") + '\'}\
 		div#craftBtns:before{ content: \''+ _("craft:") + '\'}\
 		div#buyBtns:before{ content: \''+ _("buy:") + '\'}\
-		div#civBtns:before{ content: \''+ _("civilizations:") + '\'}\
+		div#civBtns:before{ content: \''+ _("challenges:") + '\'}\
 		div#outfitting:before{ content: \''+ _("supplies:") + '\'}\
 		div#perks:before{ content: \''+ _("perks:") + '\'}\
 		div#lootButtons:before { content: \''+ _("take:") + '\'}\

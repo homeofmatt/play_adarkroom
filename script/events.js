@@ -115,8 +115,10 @@ var Events = {
 			Events.createUseMedsButton().appendTo(btns);
 		}
 
-		Events.createEscapeButton().appendTo(btns);
-		
+		//escape button only usable on terrain, not in multi-sequence battles
+		if(['A Snarling Beast', 'A Gaunt Man', 'A Strange Bird', 'A Shivering Man', 'A Man-Eater', 'A Scavenger', 'A Huge Lizard', 'A Feral Terror', 'A Soldier','A Sniper'].indexOf(Events.activeEvent().title) > -1){
+			Events.createEscapeButton().appendTo(btns);
+		}
 		
 		// Set up the enemy attack timer
 		Events._enemyAttackTimer = setTimeout(Events.enemyAttack, scene.attackDelay * 1000);
@@ -264,19 +266,14 @@ var Events = {
 	},
 
 	useEscape: function() {
-		$('#escape').text(_("5..."));
-		setTimeout(function() {
-			$('#escape').text(_("4..."));
-		}, 1000);
-		setTimeout(function() {
-			$('#escape').text(_("3..."));
-		}, 2000);
+		$SM.set('game.escaping', true);
+		$('#escape').text(_("3..."));
 		setTimeout(function() {
 			$('#escape').text(_("2..."));
-		}, 3000);
+		}, 1000);
 		setTimeout(function() {
 			$('#escape').text(_("1..."));
-		}, 4000);
+		}, 2000);
 		setTimeout(function() {
 			if(!Events.won){
 				clearTimeout(Events._enemyAttackTimer);
@@ -293,7 +290,8 @@ var Events = {
 
 				Events.endEvent();
 			}
-		}, 5000);
+		}, 3000);
+		$SM.set('game.escaping', false);
 	},
 	
 	useWeapon: function(btn) {

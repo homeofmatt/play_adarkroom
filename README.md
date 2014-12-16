@@ -26,12 +26,12 @@ A Minimalist Text Adventure Game
 * Civilizations:
 	- (Done) Grand Temple: gives 'spiritual' perk; allows shrine (new area) to bestow temporary blessing. No food or water consumed for 20 steps
 
-	- Military Stronghold: gives ability to build Modern Armor, this armor is far stronger steel armor.
+	- (Done) Military Stronghold: gives ability to build Diamond Armor, this armor is far stronger steel armor. Also allows for Diamond Sword.
 
-	- Refugee Camp: gives 'immune' perk; no more plague or disease.
+	- (Done) Refugee Camp: gives 'immune' perk; no more sickness or plague.
 
-	- Technology Center: Allows for creation of 'Adrenaline Shot' which revives player upon death and grants invulnerability for 5 steps.
-  
+	- (Done) Technology Center: Allows for creation of 'Adrenaline Shot' which revives player upon death and grants invulnerability for 10 steps.
+
 	- (Not included in final draft) Final City: N/A (Another alien wanderer may live here? May be your brother)
 
 * (Done) Completed civilizations randomly offer gifts to city
@@ -43,8 +43,6 @@ A Minimalist Text Adventure Game
 * (Done) Make challenge packages for each city
 
 * (Done) Create escape button for battles; randomly move character up to 5 spaces away from position
-
-* Add 'civilized' perk once two city challenges have been completed. (Not sure what it will do yet)
 
 * (Done) Figure out how to notify system when city is visited & quest is begun
 
